@@ -1,0 +1,28 @@
+{% extends "reviews/base.html" %}
+{% block title %}
+Register
+{% endblock title %}
+
+{% block content %}
+<div class="content-section">
+    <form method="POST">
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">
+                {{form.as_p}}
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">
+                        Sign Up
+                    </button>
+                </div>
+            </legend>
+        </fieldset>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already Have An Account?
+            <a class="ml-2" href="#">Sign In</a>
+        </small>
+    </div>
+</div>
+
+{% endblock content %}
