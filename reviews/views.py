@@ -11,4 +11,4 @@ def home(request):
     context = {
         'data': data
     }
-    return render(request, 'reviews/base.html' ,context)
+    return render(request, 'reviews/home.html' ,context)
