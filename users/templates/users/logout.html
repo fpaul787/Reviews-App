@@ -1,0 +1,17 @@
+{% extends "reviews/base.html" %}
+{% block title %}
+Logout
+{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2>You have successfully been logged out</h2>
+<div class="border-top pt-3">
+    <a class="h5" href="{% url 'login' %}">
+
+        Sign In
+
+
+    </a>
+</div>
+
+{% endblock content %}
