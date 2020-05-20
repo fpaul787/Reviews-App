@@ -6,6 +6,7 @@ Home
 
 {% for review in reviews %}
 <article class="media content-section">
+    <img src="{{review.author.profile.image.url}}" alt="" class="rounded-circle review-img">
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2" href="#">{{ review.author }}</a>
