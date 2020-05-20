@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Review
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
 
 # Create your views here.
 posts = [
@@ -40,3 +41,24 @@ class ReviewListView(ListView):
 class ReviewDetailView(DetailView):
     model = Review
     template_name = 'review_detail.html'
+
+class ReviewCreateView(CreateView):
+    model = Review
+    fields = ['title', 'content']
+    template_name = 'review_form.html'
+
+    success_url = reverse_lazy('reviews-home')
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class ReviewUpdateView(UpdateView):
+    model = Review
+    fields = ['title', 'content']
+    template_name = 'review_form.html'
+
+    success_url = reverse_lazy('reviews-home')
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
