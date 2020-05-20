@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Review
+from django.views.generic import ListView, DetailView
 
 # Create your views here.
 posts = [
@@ -16,6 +17,8 @@ posts = [
         'date_posted': "May 10, 2020"
     }
 ]
+
+# function based view
 def home(request):
     data = {
         'name': "Frantz"
@@ -26,3 +29,14 @@ def home(request):
         'reviews': Review.objects.all()
     }
     return render(request, 'home.html' ,context)
+
+class ReviewListView(ListView):
+    model = Review
+    template_name = 'home.html'
+    context_object_name = 'reviews'
+    ordering = ['-date_posted']
+
+
+class ReviewDetailView(DetailView):
+    model = Review
+    template_name = 'review_detail.html'

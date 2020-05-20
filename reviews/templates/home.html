@@ -5,6 +5,9 @@ Home
 {% block content %}
 
 {% for review in reviews %}
+
+{# double {} used for  variable #}
+{# single {} used for most complex logic#}
 <article class="media content-section">
     <img src="{{review.author.profile.image.url}}" alt="" class="rounded-circle review-img">
     <div class="media-body">
@@ -12,7 +15,7 @@ Home
             <a class="mr-2" href="#">{{ review.author }}</a>
             <small class="text-muted">{{ review.date_reviewed }}</small>
         </div>
-        <h2><a class="article-title" href="#">{{ review.title }}</a></h2>
+        <h2><a class="article-title" href="{%url 'review-detail' review.id %}">{{ review.title }}</a></h2>
         <p class="article-content">{{ review.content }}</p>
     </div>
 </article>
