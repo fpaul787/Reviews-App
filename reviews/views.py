@@ -25,4 +25,4 @@ def home(request):
         'data': data,
         'reviews': Review.objects.all()
     }
-    return render(request, 'reviews/home.html' ,context)
+    return render(request, 'home.html' ,context)
