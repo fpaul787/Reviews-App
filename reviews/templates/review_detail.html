@@ -14,8 +14,11 @@ Review Detail
         </div>
         <h2><a class="article-title" href="#">{{ object.title }}</a></h2>
         <p class="article-content">{{ object.content }}</p>
+        
+        {% if object.author == user %}
         <a class="btn btn-danger" href="{% url 'review-delete' object.id %}">Delete Review</a>
         <a class="btn btn-warning" href="{% url 'review-update' object.id %}">Update Review</a>
+        {% endif %}
     </div>
 </article>
 
