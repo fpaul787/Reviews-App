@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Review
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -37,6 +38,18 @@ class ReviewListView(ListView):
     template_name = 'home.html'
     context_object_name = 'reviews'
     ordering = ['-date_posted']
+    paginate_by = 5
+
+class UserPostListView(ListView):
+    model = Review
+    template_name = 'user_posts.html'
+    context_object_name = 'reviews'
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Review.objects.filter(author=user).order_by('-date_posted')
+
 
 class ReviewDetailView(DetailView):
     model = Review
