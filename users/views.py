@@ -5,6 +5,10 @@ from .forms import UserRegisterForm, UserUpdateForm, UserProfileUpdateFrom
 from django.contrib import messages
 
 def register(request):
+    # can't go to the register page if
+    # you're already logged in.
+    if request.user.is_authenticated:
+        return redirect('profile')
 
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
