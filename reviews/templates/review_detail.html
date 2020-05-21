@@ -8,12 +8,12 @@ Review Detail
 <article class="media content-section">
     <img src="{{object.author.profile.image.url}}" alt="" class="rounded-circle review-img">
     <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="#">{{ object.author }}</a>
+        <div class="review-metadata">
+            <a class="mr-2" href="{% url 'user-reviews' object.author.username %}">{{ object.author }}</a>
             <small class="text-muted">{{ object.date_reviewed }}</small>
         </div>
-        <h2><a class="article-title" href="#">{{ object.title }}</a></h2>
-        <p class="article-content">{{ object.content }}</p>
+        <h2><p class="review-title" >{{ object.title }}</p></h2>
+        <p class="review-content">{{ object.content }}</p>
         
         {% if object.author == user %}
         <a class="btn btn-danger" href="{% url 'review-delete' object.id %}">Delete Review</a>
