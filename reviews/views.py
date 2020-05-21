@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Review
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -38,7 +38,6 @@ class ReviewListView(ListView):
     context_object_name = 'reviews'
     ordering = ['-date_posted']
 
-
 class ReviewDetailView(DetailView):
     model = Review
     template_name = 'review_detail.html'
@@ -64,8 +63,18 @@ class ReviewUpdateView(LoginRequiredMixin, UserPassesTestMixin ,UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
+        review = self.get_object()
+        if self.request.user == review.author:
             return True # allow update
         return False # can't update
 
+class ReviewDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Review
+    template_name = 'review_confirm_delete.html'
+    success_url = '/'
+
+    def test_func(self):
+        review = self.get_object()
+        if self.request.user == review.author:
+            return True # allow deletion
+        return False # can't delete
