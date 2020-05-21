@@ -55,7 +55,7 @@ class ReviewCreateView(CreateView):
 class ReviewUpdateView(UpdateView):
     model = Review
     fields = ['title', 'content']
-    template_name = 'review_form.html'
+    template_name = 'review_update.html'
 
     success_url = reverse_lazy('reviews-home')
     def form_valid(self, form):
