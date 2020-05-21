@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+Reviews
+{% endblock title %}
+{% block content %}
+<h1 class="mb-3">Reviews by {{view.kwargs.username}}</h1>
+{% for review in reviews %}
+<article class="media content-section">
+    <img src="{{review.author.profile.image.url}}" alt="" class="rounded-circle review-img">
+    <div class="media-body">
+        <div class="review-metadata">
+            <a class="mr-2" href="{% url 'user-reviews' review.author.username %}">{{ review.author }}</a>
+            <small class="text-muted">{{ review.date_posted |date:"F d, Y" }}</small>
+        </div>
+        <h2><a class="review-title" href="{% url 'review-detail' review.id %}">{{ review.title }}</a></h2>
+        <p class="review-content">{{ review.content }}</p>
+    </div>
+</article>
+{% endfor %}
+{% endblock content%}
