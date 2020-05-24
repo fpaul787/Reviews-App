@@ -33,9 +33,11 @@ urlpatterns = [
     
     
     path('', RedirectView.as_view(url="/home")),
-    path('', include('reviews.urls')),
-    re_path(r'^.*', include('error.urls'))
+    path('', include('reviews.urls'))
+    
 ]
+handler404 = 'error.views.default'
+# handler500 = Myhandler500
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
