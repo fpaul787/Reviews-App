@@ -15,6 +15,9 @@ Review Detail
         <h2><p class="review-title" >{{ object.title }}</p></h2>
         <p class="review-content">{{ object.content }}</p>
         
+        <div>
+            {{instance.comment_set.all}}
+        </div>
         {% if object.author == user %}
         <a class="btn btn-danger" href="{% url 'review-delete' object.id %}">Delete Review</a>
         <a class="btn btn-warning" href="{% url 'review-update' object.id %}">Update Review</a>
