@@ -33,8 +33,8 @@ urlpatterns = [
     
     
     path('', RedirectView.as_view(url="/home")),
-    path('', include('reviews.urls'))
-    # re_path(r'^.*', include('error.urls'))
+    path('', include('reviews.urls')),
+    re_path(r'^.*', include('error.urls'))
 ]
 
 if settings.DEBUG:

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'reviews',
     'crispy_forms',
-    'error'
+    'error',
+    'comments'
 ]
 
 MIDDLEWARE = [
