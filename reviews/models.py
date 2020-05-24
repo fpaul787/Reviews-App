@@ -6,6 +6,7 @@ from django.utils import timezone
 class Review(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
+    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
