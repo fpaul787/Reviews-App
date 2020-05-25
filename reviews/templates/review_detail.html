@@ -59,7 +59,9 @@ Review Detail
                         <span class="text-muted pull-right">
                             {{comment.timestamp}}
                         </span>
-                        <h4 class="text-success">{{comment.author}}</h4>
+                        <a href="{%url 'user-reviews' comment.author.username %}">
+                            <h4 class="text-success">{{comment.author}}</h4>
+                        </a>
                         <p>{{comment.content}}</p>
                         
                         <hr />
