@@ -43,34 +43,30 @@ Review Detail
                 <hr>
             </div>
             <ul class="media-list">
+                
+                {% if object.comment_set.count > 0 %}
+                
+                {% for comment in object.comment_set.all %}
+                
                 <li class="media">
-                    <img src="{{object.comment_set.first.author.profile.image.url}}" class="pull-left rounded-circle review-img"
+                    
+                    <a href="{%url 'user-reviews' comment.author.username %}" class="pull-left">
+                        <img src="{{comment.author.profile.image.url}}" class="pull-left rounded-circle review-img"
                         alt="...">
+                    </a>
+                    
                     <div class="media-body">
-                        <h4 class="text-success">{{object.comment_set.first.author}}</h4>
-                        <p>{{object.comment_set.first.content}}</p>
+                        <span class="text-muted pull-right">
+                            {{comment.timestamp}}
+                        </span>
+                        <h4 class="text-success">{{comment.author}}</h4>
+                        <p>{{comment.content}}</p>
                         
                         <hr />
                     </div>
                 </li>
-                <li class="media">
-                    <img src="{{object.comment_set.first.author.profile.image.url}}" class="mr-3 rounded-circle review-img"
-                        alt="...">
-                    <div class="media-body">
-                        <h5 class="mt-0">{{object.comment_set.first.author}}</h5>
-                        {{object.comment_set.first.content}}
-                        <hr />
-                    </div>
-                </li>
-                <li class="media">
-                    <img src="{{object.comment_set.first.author.profile.image.url}}" class="mr-3 rounded-circle review-img"
-                        alt="...">
-                    <div class="media-body">
-                        <h5 class="mt-0">{{object.comment_set.first.author}}</h5>
-                        {{object.comment_set.first.content}}
-                        <hr />
-                    </div>
-                </li>
+                {% endfor %}
+                {% endif %}
             </ul>
             
         </div>
