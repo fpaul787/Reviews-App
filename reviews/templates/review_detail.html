@@ -12,15 +12,69 @@ Review Detail
             <a class="mr-2" href="{% url 'user-reviews' object.author.username %}">{{ object.author }}</a>
             <small class="text-muted">{{ object.date_reviewed }}</small>
         </div>
-        <h2><p class="review-title" >{{ object.title }}</p></h2>
+        <h2>
+            <p class="review-title">{{ object.title }}</p>
+        </h2>
         <p class="review-content">{{ object.content }}</p>
-        
-        
+
+
         {% if object.author == user %}
         <a class="btn btn-danger" href="{% url 'review-delete' object.id %}">Delete Review</a>
         <a class="btn btn-warning" href="{% url 'review-update' object.id %}">Update Review</a>
         {% endif %}
+
+
     </div>
+
+
 </article>
+
+<div class="container comment-section">
+    <div class="comments comments-info">
+        <div class="comment-heading">
+            Comment Section
+        </div>
+        <div class="comment-body">
+            <div class="comment-form">
+                <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
+                <br>
+                <button type="button" class="btn btn-info pull-right">Post</button>
+                <div class="clearfix"></div>
+                <hr>
+            </div>
+            <ul class="media-list">
+                <li class="media">
+                    <img src="{{object.comment_set.first.author.profile.image.url}}" class="pull-left rounded-circle review-img"
+                        alt="...">
+                    <div class="media-body">
+                        <h4 class="text-success">{{object.comment_set.first.author}}</h4>
+                        <p>{{object.comment_set.first.content}}</p>
+                        
+                        <hr />
+                    </div>
+                </li>
+                <li class="media">
+                    <img src="{{object.comment_set.first.author.profile.image.url}}" class="mr-3 rounded-circle review-img"
+                        alt="...">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{object.comment_set.first.author}}</h5>
+                        {{object.comment_set.first.content}}
+                        <hr />
+                    </div>
+                </li>
+                <li class="media">
+                    <img src="{{object.comment_set.first.author.profile.image.url}}" class="mr-3 rounded-circle review-img"
+                        alt="...">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{object.comment_set.first.author}}</h5>
+                        {{object.comment_set.first.content}}
+                        <hr />
+                    </div>
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
