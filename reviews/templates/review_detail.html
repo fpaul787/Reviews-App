@@ -3,7 +3,7 @@
 Review Detail
 {% endblock title %}
 {% block content %}
-
+{% load crispy_forms_tags %}
 
 <article class="media content-section">
     <img src="{{object.author.profile.image.url}}" alt="" class="rounded-circle review-img">
@@ -38,7 +38,8 @@ Review Detail
             <div class="comment-form">
                 <form method="POST">
                     {% csrf_token %}
-                <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
+                    
+                <textarea class="form-control" name="my_textarea" placeholder="write a comment..." rows="3"></textarea>
                 <br>
                 <button type="submit" class="btn btn-info pull-right">Post</button>
                 <div class="clearfix"></div>
@@ -47,9 +48,9 @@ Review Detail
             </div>
             <ul class="media-list">
                 
-                {% if object.comment_set.count > 0 %}
+                {% if comments.count > 0 %}
                 
-                {% for comment in object.comment_set.all %}
+                {% for comment in comments.all %}
                 
                 <li class="media">
                     

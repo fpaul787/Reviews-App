@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from comments.forms import CommentForm
+from django.views.generic.edit import FormMixin
 
 # Create your views here.
 posts = [
@@ -53,16 +54,50 @@ class UserReviewsListView(ListView):
         return Review.objects.filter(author=user).order_by('-date_posted')
 
 
-class ReviewDetailView(DetailView):
-    model = Review
+class ReviewDetailView(FormMixin,DetailView):
+    model = Review   
     template_name = 'review_detail.html'
+    form_class = CommentForm
     
-
+    def get_context_data(self, **kwargs):
+        context = super(ReviewDetailView, self).get_context_data(**kwargs)
+        
+        # context['form'] = CommentForm(initial={
+        #     'review': self.object
+        # })
+        # getting all the comments for this review
+        context['comments'] = self.object.comment_set.filter(review=context['object'])
+        #print(context['comments'].values())
+        print(context['form'])
+        return context
+    
     def post(self, request, *args, **kwargs):
-        #comment_form = CommentForm(request.POST)
-        print("Please work")
-        html = "<h1>Post Made </h1>"
-        return HttpResponse(html)
+        self.object = self.get_object()
+        form = self.get_form()
+        print(form)
+        #print(request.POST.get("my_textarea"))
+        return HttpResponse(None)
+
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        
+        form.save()
+        return super(ReviewDetailView, self).form_valid(form)
+    
+    # def form_valid(self, form):
+    #     print('Worked')
+    #     return HttpResponse(None)
+
+    # def post(self, request, *args, **kwargs):
+    #     #print(self.request.user) author check
+    #     # print(kwargs['pk']) review ID check
+    #     #print(Review.objects.get(pk=kwargs['pk'])) review check
+        
+    #     return HttpResponse(None)
 
 class ReviewCreateView(LoginRequiredMixin,CreateView):
     model = Review
