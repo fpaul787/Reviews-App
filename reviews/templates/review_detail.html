@@ -36,11 +36,14 @@ Review Detail
         </div>
         <div class="comment-body">
             <div class="comment-form">
+                <form method="POST">
+                    {% csrf_token %}
                 <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
                 <br>
-                <button type="button" class="btn btn-info pull-right">Post</button>
+                <button type="submit" class="btn btn-info pull-right">Post</button>
                 <div class="clearfix"></div>
                 <hr>
+            </form>
             </div>
             <ul class="media-list">
                 

@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 from .models import Review
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from comments.forms import CommentForm
 
 # Create your views here.
 posts = [
@@ -54,6 +56,13 @@ class UserReviewsListView(ListView):
 class ReviewDetailView(DetailView):
     model = Review
     template_name = 'review_detail.html'
+    
+
+    def post(self, request, *args, **kwargs):
+        #comment_form = CommentForm(request.POST)
+        print("Please work")
+        html = "<h1>Post Made </h1>"
+        return HttpResponse(html)
 
 class ReviewCreateView(LoginRequiredMixin,CreateView):
     model = Review
