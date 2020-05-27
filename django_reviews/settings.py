@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'django_reviews.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'notes',
+        'NAME': 'reviews',
         'USER': 'root',
         "PASSWORD": DATABASE_PASSWORD
     }
