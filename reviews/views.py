@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Review
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -9,6 +10,7 @@ from comments.forms import CommentForm
 from comments.models import Comment
 from django.views.generic.edit import FormMixin
 from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 posts = [
@@ -62,15 +64,21 @@ class ReviewDetailView(FormMixin,DetailView):
     form_class = CommentForm
     success_url = ''
     
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         context = super(ReviewDetailView, self).get_context_data(**kwargs)
-        
-        #print(kwargs)
+        print(self.kwargs['pk'])
+        instance = get_object_or_404(Review, id=self.kwargs['pk'])
+        print(instance)
+
         # context['form'] = CommentForm(initial={
         #     'review': self.object
         # })
         # getting all the comments for this review
-        context['comments'] = self.object.comment_set.filter(review=context['object'])
+        content_type = ContentType.objects.get_for_model(Review)
+        obj_id = instance.id
+
+
+        context['comments'] = Comment.objects.filter(content_type=content_type, object_id=obj_id)
         return context
     
     def post(self, request, *args, **kwargs):
