@@ -66,42 +66,35 @@ class ReviewDetailView(FormMixin,DetailView):
     
     def get_context_data(self, *args, **kwargs):
         context = super(ReviewDetailView, self).get_context_data(**kwargs)
-        print(self.kwargs['pk'])
+        #print(self.kwargs['pk'])
         instance = get_object_or_404(Review, id=self.kwargs['pk'])
-        print(instance)
+        #print(instance)
 
         # context['form'] = CommentForm(initial={
         #     'review': self.object
         # })
         # getting all the comments for this review
+
         content_type = ContentType.objects.get_for_model(Review)
         obj_id = instance.id
 
-
+        context['content_type'] = content_type
+        context['object_id'] = obj_id
         context['comments'] = Comment.objects.filter(content_type=content_type, object_id=obj_id)
         return context
     
     def post(self, request, *args, **kwargs):
-        success_url = '/review/{}'.format(kwargs)
-        #print(kwargs) pk of post
-       
-        #print(request.POST.get("my_textarea")) text of comment
-        #print(request.user)
 
-        self.object = self.get_object()
-         # print(self.object)
-        form = self.get_form()
-        #print(self.get_form())
+        content_type = ContentType.objects.get_for_model(Review)
+        instance_id = kwargs['pk']        
         
-        if len(request.POST.get("my_textarea")) > 0:
-            # print("valid")
-            
-            comment = Comment(author=request.user, review= self.object,content= request.POST.get("my_textarea"))
+        if len(request.POST.get("my_textarea")) > 0:            
+            comment = Comment(author=request.user, content_type=content_type, object_id=instance_id,content= request.POST.get("my_textarea"))
             comment.save()
             return HttpResponseRedirect(self.request.path_info)
         else:
-            print("not valid")
-            return self.form_invalid(form)
+            # not valid request
+            return HttpResponseRedirect(self.request.path_info)
 
 class ReviewCreateView(LoginRequiredMixin,CreateView):
     model = Review
