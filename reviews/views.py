@@ -6,7 +6,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from comments.forms import CommentForm
+from comments.models import Comment
 from django.views.generic.edit import FormMixin
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 posts = [
@@ -58,46 +60,40 @@ class ReviewDetailView(FormMixin,DetailView):
     model = Review   
     template_name = 'review_detail.html'
     form_class = CommentForm
+    success_url = ''
     
     def get_context_data(self, **kwargs):
         context = super(ReviewDetailView, self).get_context_data(**kwargs)
         
+        #print(kwargs)
         # context['form'] = CommentForm(initial={
         #     'review': self.object
         # })
         # getting all the comments for this review
         context['comments'] = self.object.comment_set.filter(review=context['object'])
-        #print(context['comments'].values())
-        print(context['form'])
         return context
     
     def post(self, request, *args, **kwargs):
+        success_url = '/review/{}'.format(kwargs)
+        #print(kwargs) pk of post
+       
+        #print(request.POST.get("my_textarea")) text of comment
+        #print(request.user)
+
         self.object = self.get_object()
+         # print(self.object)
         form = self.get_form()
-        print(form)
-        #print(request.POST.get("my_textarea"))
-        return HttpResponse(None)
-
-        if form.is_valid():
-            return self.form_valid(form)
+        #print(self.get_form())
+        
+        if len(request.POST.get("my_textarea")) > 0:
+            # print("valid")
+            
+            comment = Comment(author=request.user, review= self.object,content= request.POST.get("my_textarea"))
+            comment.save()
+            return HttpResponseRedirect(self.request.path_info)
         else:
+            print("not valid")
             return self.form_invalid(form)
-
-    def form_valid(self, form):
-        
-        form.save()
-        return super(ReviewDetailView, self).form_valid(form)
-    
-    # def form_valid(self, form):
-    #     print('Worked')
-    #     return HttpResponse(None)
-
-    # def post(self, request, *args, **kwargs):
-    #     #print(self.request.user) author check
-    #     # print(kwargs['pk']) review ID check
-    #     #print(Review.objects.get(pk=kwargs['pk'])) review check
-        
-    #     return HttpResponse(None)
 
 class ReviewCreateView(LoginRequiredMixin,CreateView):
     model = Review
