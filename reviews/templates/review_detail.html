@@ -2,6 +2,7 @@
 {% block title %}
 Review Detail
 {% endblock title %}
+{% load static %}
 {% block content %}
 {% load crispy_forms_tags %}
 
@@ -33,11 +34,12 @@ Review Detail
     <div class="comments comments-info">
         <div class="comment-heading">
             Comment Section
-
         </div>
+        <script src="{% static 'reviews/js/script.js' %}"></script>
         {% if messages %}
-        <div class="messages">
+        <div class="messages" id='messageElement'>
             {% for message in messages %}
+            
             <p class="alert alert-{{message.extra_tags}}">{{ message }}</p>
             {% endfor %}
         </div>
@@ -49,7 +51,7 @@ Review Detail
                     <textarea class="form-control" name="comment_textarea" placeholder="write a comment..."
                         rows="3"></textarea>
                     <br>
-                    <button type="submit" class="btn btn-info pull-right">Post</button>
+                    <button type="submit"  class="btn btn-info pull-right">Post</button>
                     <div class="clearfix"></div>
                     <hr>
                 </form>
