@@ -33,32 +33,41 @@ Review Detail
     <div class="comments comments-info">
         <div class="comment-heading">
             Comment Section
+
         </div>
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <p class="alert alert-{{message.extra_tags}}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
         <div class="comment-body">
             <div class="comment-form">
                 <form method="POST">
                     {% csrf_token %}
-                    
-                <textarea class="form-control" name="my_textarea" placeholder="write a comment..." rows="3"></textarea>
-                <br>
-                <button type="submit" class="btn btn-info pull-right">Post</button>
-                <div class="clearfix"></div>
-                <hr>
-            </form>
+
+                    <textarea class="form-control" name="my_textarea" placeholder="write a comment..."
+                        rows="3"></textarea>
+                    <br>
+                    <button type="submit" class="btn btn-info pull-right">Post</button>
+                    <div class="clearfix"></div>
+                    <hr>
+                </form>
             </div>
             <ul class="media-list">
-                
+
                 {% if comments.count > 0 %}
-                
+
                 {% for comment in comments.all %}
-                
+
                 <li class="media">
-                    
+
                     <a href="{%url 'user-reviews' comment.author.username %}" class="pull-left">
                         <img src="{{comment.author.profile.image.url}}" class="pull-left rounded-circle review-img"
-                        alt="...">
+                            alt="...">
                     </a>
-                    
+
                     <div class="media-body">
                         <span class="text-muted pull-right">
                             {{comment.timestamp}}
@@ -67,14 +76,14 @@ Review Detail
                             <h4 class="text-success">{{comment.author}}</h4>
                         </a>
                         <p>{{comment.content}}</p>
-                        
+
                         <hr />
                     </div>
                 </li>
                 {% endfor %}
                 {% endif %}
             </ul>
-            
+
         </div>
     </div>
 </div>

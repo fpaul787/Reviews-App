@@ -5,6 +5,13 @@ Login
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="content-section">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
@@ -16,7 +23,7 @@ Login
                 <button class="btn btn-outline-info" type="submit">
                     Login
                 </button>
-                <small class="text-muted ml-2" >
+                <small class="text-muted ml-2">
                     <a href="{%url 'password_reset'%}">Forgot Password?</a>
                 </small>
             </div>
