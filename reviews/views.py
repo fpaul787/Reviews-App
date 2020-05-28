@@ -5,11 +5,9 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from comments.forms import CommentForm
 from comments.models import Comment
-from django.views.generic.edit import FormMixin
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 
 # Create your views here.
@@ -58,23 +56,17 @@ class UserReviewsListView(ListView):
         return Review.objects.filter(author=user).order_by('-date_posted')
 
 
-class ReviewDetailView(FormMixin,DetailView):
+class ReviewDetailView(DetailView):
     model = Review   
     template_name = 'review_detail.html'
-    form_class = CommentForm
+    
     success_url = ''
     
     def get_context_data(self, *args, **kwargs):
         context = super(ReviewDetailView, self).get_context_data(**kwargs)
-        #print(self.kwargs['pk'])
+        
         instance = get_object_or_404(Review, id=self.kwargs['pk'])
-        #print(instance)
-
-        # context['form'] = CommentForm(initial={
-        #     'review': self.object
-        # })
-        # getting all the comments for this review
-
+        
         content_type = ContentType.objects.get_for_model(Review)
         obj_id = instance.id
 
@@ -94,6 +86,8 @@ class ReviewDetailView(FormMixin,DetailView):
             return HttpResponseRedirect(self.request.path_info)
         else:
             # not valid request
+            # url = reverse(self.request.path_info, kwargs={'error': True})
+            messages.error(request, "You must fill in data", extra_tags="danger")
             return HttpResponseRedirect(self.request.path_info)
 
 class ReviewCreateView(LoginRequiredMixin,CreateView):
