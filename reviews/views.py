@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from comments.models import Comment
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
