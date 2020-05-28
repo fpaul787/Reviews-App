@@ -81,14 +81,17 @@ class ReviewDetailView(DetailView):
         content_type = ContentType.objects.get_for_model(Review)
         instance_id = kwargs['pk']        
         
-        if len(request.POST.get("my_textarea")) > 0:            
-            comment = Comment(author=request.user, content_type=content_type, object_id=instance_id,content= request.POST.get("my_textarea"))
-            comment.save()
-            return HttpResponseRedirect(self.request.path_info)
+        print(request.user.is_anonymous)
+        if not request.user.is_anonymous:
+            if len(request.POST.get("comment_textarea")) > 0 or request.POST.get("comment_textarea") is not None:            
+                comment = Comment(author=request.user, content_type=content_type, object_id=instance_id,content= request.POST.get("my_textarea"))
+                comment.save()
+                return HttpResponseRedirect(self.request.path_info)
+            else:
+                messages.error(request, "You must type a comment", extra_tags="danger")
+                return HttpResponseRedirect(self.request.path_info)
         else:
-            # not valid request
-            # url = reverse(self.request.path_info, kwargs={'error': True})
-            messages.error(request, "You must fill in data", extra_tags="danger")
+            messages.error(request, "You must be logged in to comment", extra_tags="danger")
             return HttpResponseRedirect(self.request.path_info)
 
 class ReviewCreateView(LoginRequiredMixin,CreateView):

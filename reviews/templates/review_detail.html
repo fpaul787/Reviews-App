@@ -46,8 +46,7 @@ Review Detail
             <div class="comment-form">
                 <form method="POST">
                     {% csrf_token %}
-
-                    <textarea class="form-control" name="my_textarea" placeholder="write a comment..."
+                    <textarea class="form-control" name="comment_textarea" placeholder="write a comment..."
                         rows="3"></textarea>
                     <br>
                     <button type="submit" class="btn btn-info pull-right">Post</button>
