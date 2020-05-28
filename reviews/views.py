@@ -83,7 +83,7 @@ class ReviewDetailView(DetailView):
         
         if not request.user.is_anonymous:
             if len(request.POST.get("comment_textarea")) > 0 and request.POST.get("comment_textarea") is not None:            
-                comment = Comment(author=request.user, content_type=content_type, object_id=instance_id,content= request.POST.get("my_textarea"))
+                comment = Comment(author=request.user, content_type=content_type, object_id=instance_id,content=request.POST.get("comment_textarea"))
                 comment.save()
                 return HttpResponseRedirect(self.request.path_info)
             else:
