@@ -56,7 +56,6 @@ class UserReviewsListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Review.objects.filter(author=user).order_by('-date_posted')
 
-
 class ReviewDetailView(DetailView):
     model = Review   
     template_name = 'review_detail.html'
