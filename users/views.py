@@ -3,7 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, UserProfileUpdateFrom
 from django.contrib import messages
-
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.views import LogoutView
 def register(request):
     # can't go to the register page if
     # you're already logged in.
@@ -49,3 +50,16 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
+
+
+def logout(request):
+    if request.user.is_authenticated:
+        
+        if request.method == 'POST':
+            auth_logout(request)
+            return redirect('reviews-home')
+        else:
+            return render(request, 'users/logout.html')
+    else:
+        return redirect('reviews-home')
+    

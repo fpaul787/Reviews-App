@@ -4,14 +4,17 @@ Logout
 {% endblock title %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h2>You have successfully been logged out</h2>
 <div class="border-top pt-3">
-    <a class="h5" href="{% url 'login' %}">
-
-        Sign In
-
-
-    </a>
+    <form action="{% url 'logout' %}" method="post" >
+        {% csrf_token %}
+        
+        <h2>Click the logout button to successfully logout</h2>
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">
+                Logout
+            </button>
+        </div>
+      </form>
 </div>
 
 {% endblock content %}
