@@ -8,18 +8,24 @@ Home
 
 {# double {} used for  variable #}
 {# single {} used for most complex logic#}
-<article class="media content-section">
-    <img src="{{review.author.profile.image.url}}" alt="" class="rounded-circle review-img">
-    <div class="media-body">
-        <div class="review-metadata">
-            <a class="mr-2" href="{%url 'user-reviews' review.author.username %}">{{ review.author }}</a>
-            <small class="text-muted">{{ review.date_reviewed }}</small>
-        </div>
-        <h2><a class="article-title" href="{%url 'review-detail' review.id %}">{{ review.title }}</a></h2>
-        <p class="article-content">{{ review.content }}</p>
-        
+<div class="card content-section">    
+    <div class="review-metadata">
+        <a href="{%url 'user-reviews' review.author.username %}" class="link-img">
+            <img src="{{review.author.profile.image.url}}" alt="" class="rounded-circle review-img">
+        </a>
+        <a class="badge mr-1 my-1 link-img " href="{%url 'user-reviews' review.author.username %}">{{ review.author }}</a>
+        <small class="date text-muted">{{ review.date_posted }}</small>
+        <h2 class="article-title">{{ review.title }}</h2>
+    </div>  
+    <div class="media-body media-body-link">     
+            <a href="{%url 'review-detail' review.id %}" class="stretched-link ">
+                <p>
+                    {{ review.content|truncatewords:30 }}
+                </p>
+            </a>                                  
     </div>
-</article>
+
+</div>
 {% endfor %}
 {# pagination logic #}
 {% if is_paginated %}

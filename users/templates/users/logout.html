@@ -8,13 +8,17 @@ Logout
     <form action="{% url 'logout' %}" method="post" >
         {% csrf_token %}
         
-        <h2>Click the logout button to successfully logout</h2>
+        <h2>Logout out of Reviews?</h2>
         <div class="form-group">
             <button class="btn btn-outline-danger" type="submit">
                 Logout
             </button>
+            <a class="btn btn-outline-info" href="{% url 'reviews-home' %}">
+                Cancel
+            </a>  
         </div>
       </form>
+      
 </div>
 
 {% endblock content %}
