@@ -10,8 +10,8 @@ Review Detail
     <img src="{{object.author.profile.image.url}}" alt="" class="rounded-circle review-img">
     <div class="media-body">
         <div class="review-metadata">
-            <a class="mr-2" href="{% url 'user-reviews' object.author.username %}">{{ object.author }}</a>
-            <small class="text-muted">{{ object.date_reviewed }}</small>
+            <a class="badge mr-2" href="{% url 'user-reviews' object.author.username %}">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_posted }}</small>
         </div>
         <h2>
             <p class="review-title">{{ object.title }}</p>
@@ -74,7 +74,7 @@ Review Detail
                             {{comment.timestamp}}
                         </span>
                         <a href="{%url 'user-reviews' comment.author.username %}">
-                            <h4 class="text-success">{{comment.author}}</h4>
+                            <h4 class="badge">{{comment.author}}</h4>
                         </a>
                         <p>{{comment.content}}</p>
 
