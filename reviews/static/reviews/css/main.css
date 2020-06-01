@@ -166,10 +166,7 @@ a.review-title:hover {
 	list-style: none;
 }
 
-a.custom-card,
-a.custom-card:hover {
-	color: inherit;
-}
+
 
 .link-img {
 	z-index: 2;
@@ -182,16 +179,22 @@ a.custom-card:hover {
 	color: black;
 }
 
-.badge {
-	padding: 1px 9px 2px;
-	font-size: 15.025px;
+.mybadge:link  {
+	padding: 2px 9px 2px 9px;
+	font-size: 20.025px;
 	font-weight: bold;
 	white-space: nowrap;
-	color: #ffffff;
-	background-color: #000000;
+	color: #000000;
+	background-color: #e0d9d9;
 	-webkit-border-radius: 9px;
 	-moz-border-radius: 9px;
 	border-radius: 9px;
+	
 }
 
-
+.mybadge:hover{
+	
+	text-decoration: underline !important;
+	color: black !important;
+	background-color: #ffffff !important;
+}

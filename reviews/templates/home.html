@@ -13,7 +13,7 @@ Home
         <a href="{%url 'user-reviews' review.author.username %}" class="link-img">
             <img src="{{review.author.profile.image.url}}" alt="" class="rounded-circle review-img">
         </a>
-        <a class="badge mr-1 my-1 link-img " href="{%url 'user-reviews' review.author.username %}">{{ review.author }}</a>
+        <a class="mybadge link-img" href="{%url 'user-reviews' review.author.username %}">{{ review.author }}</a>
         <small class="date text-muted">{{ review.date_posted }}</small>
         <h2 class="article-title">{{ review.title }}</h2>
     </div>  
