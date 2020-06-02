@@ -45,16 +45,21 @@ ul {
 }
 
 .card:hover .mybadge{
-	background-color: #ffffff;
+	background-color: orange;
 	color: black;
 }
 
 .card:hover .stretched-link{
-	color: orange;
+	text-decoration: none;
+	color: white;
 }
 
 .card:hover .text-muted{
 	color: white !important;
+}
+
+.card:hover .review-metadata{
+	border-bottom: 3px solid #ffffff;
 }
 
 .review-title {

@@ -15,7 +15,7 @@ Home
         </a>
         <a class="mybadge link-img" href="{%url 'user-reviews' review.author.username %}">{{ review.author }}</a>
         <small class="date text-muted">{{ review.date_posted }}</small>
-        <h2 class="review-title" id="hov">{{ review.title }}</h2>
+        <h2 class="review-title">{{ review.title }}</h2>
     </div>  
     <div>     
             <a href="{%url 'review-detail' review.id %}" class="stretched-link">
