@@ -6,29 +6,26 @@ Review Detail
 {% block content %}
 {% load crispy_forms_tags %}
 
-<article class="media content-section">
-    <img src="{{object.author.profile.image.url}}" alt="" class="rounded-circle review-img">
+<div class="content-section">    
+    <div class="review-metadata">
+        <a href="{%url 'user-reviews' review.author.username %}" class="link-img">
+            <img src="{{review.author.profile.image.url}}" alt="" class="rounded-circle review-img">
+        </a>
+        <a class="mybadge link-img" href="{%url 'user-reviews' review.author.username %}">{{ review.author }}</a>
+        <small class="date text-muted">{{ review.date_posted }}</small>
+    </div>  
+    <h2>
+        <p class="review-title">{{ object.title }}</p>
+    </h2>
+    <p class="review-content">{{ object.content }}</p>                                  
+    
     <div class="media-body">
-        <div class="review-metadata">
-            <a class="badge mr-2" href="{% url 'user-reviews' object.author.username %}">{{ object.author }}</a>
-            <small class="text-muted">{{ object.date_posted }}</small>
-        </div>
-        <h2>
-            <p class="review-title">{{ object.title }}</p>
-        </h2>
-        <p class="review-content">{{ object.content }}</p>
-
-
         {% if object.author == user %}
         <a class="btn btn-danger" href="{% url 'review-delete' object.id %}">Delete Review</a>
         <a class="btn btn-warning" href="{% url 'review-update' object.id %}">Update Review</a>
-        {% endif %}
-
-
+    {% endif %}
     </div>
-
-
-</article>
+</div>
 
 <div class="container comment-section">
     <div class="comments comments-info">

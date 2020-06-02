@@ -1,6 +1,6 @@
 body {
-	background: #fafafa;
-	color: #333333;
+	background: #333333;
+	color: #fafafa;
 	margin-top: 5rem;
 }
 
@@ -34,13 +34,21 @@ ul {
 	margin-bottom: 20px;
 }
 
+.content-section-side {
+	
+	padding: 10px 20px;
+	border: 1px solid #dddddd;
+	border-radius: 3px;
+	margin-bottom: 20px;
+}
+
 .card:hover {
-	background-color: grey;
+	background-color: #333333;
 	color: white;
 }
 
 .card:hover .review-title{
-	background-color: grey;
+	background-color: #333333;
 	color: white;
 }
 
