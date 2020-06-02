@@ -44,7 +44,7 @@ class ReviewListView(ListView):
     template_name = 'home.html'
     context_object_name = 'reviews'
     ordering = ['-date_posted']
-    paginate_by = 5
+    paginate_by = 4
 
 class UserReviewsListView(ListView):
     model = Review

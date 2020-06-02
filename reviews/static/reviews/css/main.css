@@ -4,14 +4,7 @@ body {
 	margin-top: 5rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	color: #444444;
-}
+
 
 ul {
 	margin: 0;
@@ -41,13 +34,31 @@ ul {
 	margin-bottom: 20px;
 }
 
-.review-title {
-	color: #444444;
+.card:hover {
+	background-color: grey;
+	color: white;
 }
 
-a.review-title:hover {
-	color: #428bca;
-	text-decoration: none;
+.card:hover .review-title{
+	background-color: grey;
+	color: white;
+}
+
+.card:hover .mybadge{
+	background-color: #ffffff;
+	color: black;
+}
+
+.card:hover .stretched-link{
+	color: orange;
+}
+
+.card:hover .text-muted{
+	color: white !important;
+}
+
+.review-title {
+	color: #700a0a;
 }
 
 .review-content {
@@ -74,11 +85,6 @@ a.review-title:hover {
 .date {
 	float: right;
 	margin-top: 5px;
-}
-
-.review-metadata a:hover {
-	color: #333;
-	text-decoration: none;
 }
 
 .review-svg {
@@ -167,18 +173,15 @@ a.review-title:hover {
 }
 
 
-
+/* important to make sure links
+are in stack order */
 .link-img {
 	z-index: 2;
 	position: relative;
 }
 
-.media-body-link a:hover {
-	/* !important for bootstrap */
-	text-decoration: none !important;
-	color: black;
-}
 
+/* for username link on post  */
 .mybadge:link  {
 	padding: 2px 9px 2px 9px;
 	font-size: 20.025px;
@@ -188,13 +191,12 @@ a.review-title:hover {
 	background-color: #e0d9d9;
 	-webkit-border-radius: 9px;
 	-moz-border-radius: 9px;
-	border-radius: 9px;
-	
+	border-radius: 9px;	
 }
 
-.mybadge:hover{
+/* .mybadge:hover{
 	
 	text-decoration: underline !important;
 	color: black !important;
 	background-color: #ffffff !important;
-}
+} */
