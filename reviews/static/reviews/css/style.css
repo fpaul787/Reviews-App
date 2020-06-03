@@ -1,0 +1,325 @@
+body {
+  background: #333333;
+  color: #fafafa;
+  margin-top: 5rem;
+}
+
+ul {
+  margin: 0;
+}
+
+.bg-steel {
+  background-color: #5f788a;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.content-section-side {
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.card:hover {
+  background-color: #333333;
+  color: white;
+}
+
+.card:hover .review-title {
+  background-color: #333333;
+  color: white;
+}
+
+.card:hover .mybadge {
+  background-color: orange;
+  color: black;
+}
+
+.card:hover .stretched-link {
+  text-decoration: none;
+  color: white;
+}
+
+.card:hover .text-muted {
+  color: white !important;
+}
+
+.card:hover .review-metadata {
+  border-bottom: 3px solid #ffffff;
+}
+
+.review-title {
+  color: #700a0a;
+}
+
+.review-content {
+  white-space: pre-line;
+}
+
+.review-content-preview {
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.review-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.review-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 10px;
+  border-bottom: 3px solid #131212;
+}
+
+.date {
+  float: right;
+  margin-top: 5px;
+}
+
+.review-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.comment-section {
+  margin-left: -15px;
+  display: inline;
+}
+
+.comment-form {
+  height: auto;
+}
+
+.panel-heading {
+  padding: 10px 10px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.comment {
+  margin-bottom: 20px;
+  margin-left: -15px;
+}
+
+.comment-body {
+  padding: 15px;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.media-body,
+.media-left,
+.media-right {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.comments {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.comments-info {
+  border-color: #bce8f1;
+}
+
+.comment-heading {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.media-list {
+  padding-left: 20px;
+  list-style: none;
+}
+
+/* important to make sure links
+are in stack order */
+.link-img {
+  z-index: 2;
+  position: relative;
+}
+
+/* for username link on post  */
+.mybadge:link {
+  padding: 2px 9px 2px 9px;
+  font-size: 20.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #000000;
+  background-color: #e0d9d9;
+  border-radius: 9px;
+}
+
+/* .mybadge:hover{
+	
+	text-decoration: underline !important;
+	color: black !important;
+	background-color: #ffffff !important;
+} */
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tg-list {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tg-list-item {
+  margin-top: 3px;
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#tg-text {
+  margin-top: 5px;
+  margin-right: 1rem;
+  color: #ffffff;
+}
+
+#cb1 {
+  margin-left: 5px;
+}
+
+.tgl {
+  display: none;
+}
+
+.tgl, .tgl:after, .tgl:before,
+.tgl *,
+.tgl *:after,
+.tgl *:before,
+.tgl + .tgl-btn {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection,
+.tgl *::-moz-selection,
+.tgl *:after::-moz-selection,
+.tgl *:before::-moz-selection,
+.tgl + .tgl-btn::-moz-selection {
+  background: none;
+}
+
+.tgl::selection, .tgl:after::selection, .tgl:before::selection,
+.tgl *::selection,
+.tgl *:after::selection,
+.tgl *:before::selection,
+.tgl + .tgl-btn::selection {
+  background: none;
+}
+
+.tgl + .tgl-btn {
+  outline: 0;
+  display: block;
+  width: 4em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+
+.tgl + .tgl-btn:after {
+  left: 0;
+}
+
+.tgl + .tgl-btn:before {
+  display: none;
+}
+
+.tgl:checked + .tgl-btn:after {
+  left: 50%;
+}
+
+.tgl-light + .tgl-btn {
+  background: #f0f0f0;
+  border-radius: 2em;
+  padding: 2px;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+}
+
+.tgl-light + .tgl-btn:after {
+  border-radius: 50%;
+  background: #fff;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.tgl-light:checked + .tgl-btn {
+  background: #9FD6AE;
+}
+/*# sourceMappingURL=style.css.map */

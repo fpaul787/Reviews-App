@@ -5,3 +5,4 @@ build
 django_notes/__pycache__/settings.cpython-37.pyc
 
 /media
+reviews/static/reviews/css/main.css
