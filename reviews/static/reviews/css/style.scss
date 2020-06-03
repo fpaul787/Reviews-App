@@ -42,28 +42,32 @@ ul {
 	margin-bottom: 20px;
 }
 
-.card:hover {
+.card{
 	background-color: #333333;
-	color: white;
+}
+
+.card:hover {
+	background-color: #ffffff;
+	color: #000000;
 }
 
 .card:hover .review-title{
-	background-color: #333333;
-	color: white;
+	background-color: #ffffff;
+	color: #ffc0cb;
 }
 
 .card:hover .mybadge{
-	background-color: orange;
+	background-color: #ffc0cb;
 	color: black;
 }
 
 .card:hover .stretched-link{
 	text-decoration: none;
-	color: white;
+	color: #000000;
 }
 
 .card:hover .text-muted{
-	color: white !important;
+	color: #000000 !important;
 }
 
 .card:hover .review-metadata{
@@ -71,7 +75,7 @@ ul {
 }
 
 .review-title {
-	color: #700a0a;
+	color: #ffa500;
 }
 
 .review-content {
@@ -201,18 +205,11 @@ are in stack order */
 	font-weight: bold;
 	white-space: nowrap;
 	color: #000000;
-	background-color: #e0d9d9;
+	background-color: #ffa500;
 	-webkit-border-radius: 9px;
 	-moz-border-radius: 9px;
 	border-radius: 9px;	
 }
-
-/* .mybadge:hover{
-	
-	text-decoration: underline !important;
-	color: black !important;
-	background-color: #ffffff !important;
-} */
 
 // for dark mode toggle
 ul,
@@ -296,19 +293,19 @@ li {
 // themes
 .tgl-light {
 	+ .tgl-btn {
-		background: #0e0a0a;
+		background: #ffffff;;
 		border-radius: 2em;
 		padding: 2px;
 		transition: all .4s ease;
 		&:after {
 			border-radius: 50%;
-			background: #fff;
+			background: pink;
 			transition: all .2s ease;
 		}
 	}
   
 	&:checked + .tgl-btn {
-		background: #fff;
+		background: #000000;
 	}
 }
 
