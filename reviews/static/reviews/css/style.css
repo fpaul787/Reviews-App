@@ -305,7 +305,7 @@ li {
 }
 
 .tgl-light + .tgl-btn {
-  background: #f0f0f0;
+  background: #0e0a0a;
   border-radius: 2em;
   padding: 2px;
   -webkit-transition: all .4s ease;
@@ -320,6 +320,10 @@ li {
 }
 
 .tgl-light:checked + .tgl-btn {
-  background: #9FD6AE;
+  background: #fff;
+}
+
+.login-form {
+  color: #000000;
 }
 /*# sourceMappingURL=style.css.map */

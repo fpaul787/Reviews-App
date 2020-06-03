@@ -214,6 +214,7 @@ are in stack order */
 	background-color: #ffffff !important;
 } */
 
+// for dark mode toggle
 ul,
 li {
 	list-style: none;
@@ -295,7 +296,7 @@ li {
 // themes
 .tgl-light {
 	+ .tgl-btn {
-		background: #f0f0f0;
+		background: #0e0a0a;
 		border-radius: 2em;
 		padding: 2px;
 		transition: all .4s ease;
@@ -307,6 +308,10 @@ li {
 	}
   
 	&:checked + .tgl-btn {
-		background: #9FD6AE;
+		background: #fff;
 	}
+}
+
+.login-form{
+	color: #000000;
 }

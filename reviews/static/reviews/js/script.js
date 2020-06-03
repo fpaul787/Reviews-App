@@ -18,11 +18,7 @@ function checkboxClick(e)
 
 window.onload = function() {
     //this.alert('Page is loaded')
-
-    
-
-    if (this.document.getElementById('messageElement').classList.length > 0){
-            
+    if (this.document.getElementById('messageElement').classList.length > 0){            
         this.setTimeout( function(){
         this.document.getElementById('messageElement').remove();
         },
@@ -30,9 +26,6 @@ window.onload = function() {
     }  
 }
 
-function App() {
-
-}
 
 setState = function(state) {
     localStorage.setItem('checked', state);
@@ -41,6 +34,7 @@ setState = function(state) {
 getState = function() {
    return localStorage.getItem('checked');
 }
+
 function init(){
     // var app = new App();
     var state = getState();
