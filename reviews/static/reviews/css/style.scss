@@ -312,6 +312,15 @@ li {
 	}
 }
 
+.register-form,
 .login-form{
-	color: #000000;
+	background-color: #333333;
+	color: #ffffff;
+
+	& .text-muted{
+		color: lighten($color: orange, $amount: 30) !important; // to change bootstrap
+	}
 }
+
+
+

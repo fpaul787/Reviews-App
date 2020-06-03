@@ -323,7 +323,14 @@ li {
   background: #fff;
 }
 
+.register-form,
 .login-form {
-  color: #000000;
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.register-form .text-muted,
+.login-form .text-muted {
+  color: #ffdb99 !important;
 }
 /*# sourceMappingURL=style.css.map */

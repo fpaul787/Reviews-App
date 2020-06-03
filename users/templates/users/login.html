@@ -4,7 +4,7 @@ Login
 {% endblock title %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="content-section">
+<div class="login-form content-section">
     {% if messages %}
     {% for message in messages %}
     <div class="alert alert-{{message.tags}}">
@@ -14,7 +14,7 @@ Login
     {% endif %}
     <form method="POST">
         {% csrf_token %}
-        <fieldset class="login-form form-group">
+        <fieldset class="form-group">
             <legend class="border-bottom mb-4">
                 Log In
             </legend>
@@ -33,7 +33,7 @@ Login
     <div class="border-top pt-3">
         <small class="text-muted">
             Need An Account?
-            <a class="ml-2" href="{% url 'register' %}">Sign Up</a>
+            <a class="ml-2  btn btn-outline-info" href="{% url 'register' %}">Sign Up</a>
         </small>
     </div>
 </div>
