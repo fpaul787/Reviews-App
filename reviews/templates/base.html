@@ -32,23 +32,25 @@
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="{% url 'reviews-home'%}">Home</a>
-                        
+
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
                         <a class="nav-item nav-link" href="{% url 'review-create'%}">Post a Review</a>
                         <a class="nav-item nav-link" href="{% url 'profile' %}">My Profile</a>
+                        <a class="nav-item nav-link my-reviews-link " href="{%url 'user-reviews' user.username %}">
+                            My Reviews</a>
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                         {% else %}
 
                         <a class="nav-item nav-link " href="{% url 'login' %}">Login</a>
                         <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
-                        
+
                         {% endif %}
                         <ul class="tg-list">
                             <li class="tg-list-item">
-                                <p id="tg-text">Dark Theme</p>                                
+                                <p id="tg-text">Dark Theme</p>
                                 <input id="cb1" class="tgl tgl-light" type="checkbox">
                                 <label class="tgl-btn" for="cb1"></label>
                             </li>
@@ -88,8 +90,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-        <!-- my js file -->
-        <script src="{% static 'reviews/js/script.js' %}"></script>
+    <!-- my js file -->
+    <script src="{% static 'reviews/js/script.js' %}"></script>
 </body>
 
 </html>

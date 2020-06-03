@@ -80,6 +80,7 @@ ul {
 
 .review-content {
 	white-space: pre-line;
+	color: #000000;
 }
 
 .review-content-preview {
@@ -124,6 +125,7 @@ ul {
 .comment-section {
 	margin-left: -15px;
 	display: inline;
+	color: #000000;
 }
 
 .comment-form {
@@ -210,6 +212,20 @@ are in stack order */
 	-moz-border-radius: 9px;
 	border-radius: 9px;	
 }
+
+.my-reviews-link  {
+	padding: 10px 9px 2px 9px;
+	font-size: 15.025px;
+	font-weight: bold;
+	white-space: nowrap;
+	color: green !important;
+	background-color: #ffa500;
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;	
+	
+}
+
 
 // for dark mode toggle
 ul,
@@ -299,7 +315,7 @@ li {
 		transition: all .4s ease;
 		&:after {
 			border-radius: 50%;
-			background: pink;
+			background: #ffc0cb;
 			transition: all .2s ease;
 		}
 	}
@@ -309,6 +325,8 @@ li {
 	}
 }
 
+.profile-form,
+.post-form,
 .register-form,
 .login-form{
 	background-color: #333333;
@@ -317,6 +335,11 @@ li {
 	& .text-muted{
 		color: lighten($color: orange, $amount: 30) !important; // to change bootstrap
 	}
+}
+
+.profile-section a{
+	font-size: large;
+	color: rgb(113, 0, 128);
 }
 
 
