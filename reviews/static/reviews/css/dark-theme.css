@@ -1,6 +1,6 @@
 body {
-  background: #ffffff;
-  color: #000000;
+  background: #333333;
+  color: #fafafa;
   margin-top: 5rem;
 }
 
@@ -352,4 +352,4 @@ li {
   font-size: large;
   color: #710080;
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=dark-theme.css.map */
