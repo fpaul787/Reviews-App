@@ -40,22 +40,17 @@ ul {
 }
 
 .card {
-  background-color: #333333;
+  background-color: #ffffff;
 }
 
 .card:hover {
-  background-color: #ffffff;
+  background-color: #727272;
   color: #000000;
 }
 
 .card:hover .review-title {
-  background-color: #ffffff;
-  color: #ffc0cb;
-}
-
-.card:hover .mybadge {
-  background-color: #ffc0cb;
-  color: black;
+  background-color: #727272;
+  color: #ffa500;
 }
 
 .card:hover .stretched-link {
@@ -63,8 +58,12 @@ ul {
   color: #000000;
 }
 
+.text-muted {
+  font-size: medium;
+}
+
 .card:hover .text-muted {
-  color: #000000 !important;
+  color: #ffffff !important;
 }
 
 .card:hover .review-metadata {
@@ -72,7 +71,7 @@ ul {
 }
 
 .review-title {
-  color: #ffa500;
+  color: #000000;
 }
 
 .review-content {
@@ -203,8 +202,13 @@ are in stack order */
   font-weight: bold;
   white-space: nowrap;
   color: #000000;
-  background-color: #ffa500;
+  background-color: #ffc0cb;
   border-radius: 9px;
+}
+
+.card:hover .mybadge {
+  background-color: #ffa500;
+  color: black;
 }
 
 .my-reviews-link {
@@ -213,7 +217,7 @@ are in stack order */
   font-weight: bold;
   white-space: nowrap;
   color: green !important;
-  background-color: #ffa500;
+  background-color: #ffc0cb;
   border-radius: 9px;
 }
 
@@ -329,23 +333,30 @@ li {
   transition: all .2s ease;
 }
 
+.tgl-light + .tgl-btn:before {
+  border-radius: 50%;
+  background: red;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
 .tgl-light:checked + .tgl-btn {
-  background: #000000;
+  background: red;
 }
 
 .profile-form,
 .post-form,
 .register-form,
 .login-form {
-  background-color: #333333;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #333333;
 }
 
 .profile-form .text-muted,
 .post-form .text-muted,
 .register-form .text-muted,
 .login-form .text-muted {
-  color: #ffdb99 !important;
+  color: #000000;
 }
 
 .profile-section a {

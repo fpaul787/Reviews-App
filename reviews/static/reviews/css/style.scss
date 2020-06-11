@@ -43,22 +43,17 @@ ul {
 }
 
 .card{
-	background-color: #333333;
+	background-color: #ffffff;
 }
 
 .card:hover {
-	background-color: #ffffff;
+	background-color: #727272;
 	color: #000000;
 }
 
 .card:hover .review-title{
-	background-color: #ffffff;
-	color: #ffc0cb;
-}
-
-.card:hover .mybadge{
-	background-color: #ffc0cb;
-	color: black;
+	background-color: #727272;
+	color: #ffa500;
 }
 
 .card:hover .stretched-link{
@@ -66,8 +61,12 @@ ul {
 	color: #000000;
 }
 
+.text-muted{
+	font-size: medium;
+}
+
 .card:hover .text-muted{
-	color: #000000 !important;
+	color: #ffffff !important;
 }
 
 .card:hover .review-metadata{
@@ -75,7 +74,7 @@ ul {
 }
 
 .review-title {
-	color: #ffa500;
+	color: #000000;
 }
 
 .review-content {
@@ -207,10 +206,15 @@ are in stack order */
 	font-weight: bold;
 	white-space: nowrap;
 	color: #000000;
-	background-color: #ffa500;
+	background-color: #ffc0cb;
 	-webkit-border-radius: 9px;
 	-moz-border-radius: 9px;
 	border-radius: 9px;	
+}
+
+.card:hover .mybadge{
+	background-color: #ffa500;
+	color: black;
 }
 
 .my-reviews-link  {
@@ -219,7 +223,7 @@ are in stack order */
 	font-weight: bold;
 	white-space: nowrap;
 	color: green !important;
-	background-color: #ffa500;
+	background-color: #ffc0cb;
 	-webkit-border-radius: 9px;
 	-moz-border-radius: 9px;
 	border-radius: 9px;	
@@ -318,10 +322,16 @@ li {
 			background: #ffc0cb;
 			transition: all .2s ease;
 		}
+
+		&:before {
+			border-radius: 50%;
+			background: red;
+			transition: all .2s ease;
+		}
 	}
   
 	&:checked + .tgl-btn {
-		background: #000000;
+		background: red;
 	}
 }
 
@@ -329,11 +339,11 @@ li {
 .post-form,
 .register-form,
 .login-form{
-	background-color: #333333;
-	color: #ffffff;
+	background-color: #ffffff;
+	color: #333333;
 
 	& .text-muted{
-		color: lighten($color: orange, $amount: 30) !important; // to change bootstrap
+		color: #000000; // to change bootstrap
 	}
 }
 

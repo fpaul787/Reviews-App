@@ -46,27 +46,20 @@ function init(){
         checkbox.checked = true;    
     }
 
-    checkbox.addEventListener('click', function() {
-        //alert('Page is loaded')
-        
+    checkbox.addEventListener('click', function() {        
         setState(checkbox.checked)
 
         dark_theme = getState();
         
         if(dark_theme == 'true'){
-            // console.log(state)
-            console.log("Dark theme is on")
             checkbox.checked = true;
             changeCSS("dark-theme.css", 1)
             
         }else{
-            console.log("Dark theme is false")
             checkbox.checked = false;
             changeCSS("style.css", 1)
         }
-        // location.reload();
-    })
-    
+    })    
 }
 
 init();

@@ -66,6 +66,12 @@ ul {
 	color: #000000;
 }
 
+
+.text-muted{
+	font-size: large ;
+	color: #ffffff !important;
+}
+
 .card:hover .text-muted{
 	color: #000000 !important;
 }
@@ -307,6 +313,7 @@ li {
 }
 
 // themes
+// themes
 .tgl-light {
 	+ .tgl-btn {
 		background: #ffffff;;
@@ -318,10 +325,30 @@ li {
 			background: #ffc0cb;
 			transition: all .2s ease;
 		}
+
+		&:before {
+			border-radius: 50%;
+			background: red;
+			transition: all .2s ease;
+		}
 	}
   
 	&:checked + .tgl-btn {
 		background: #000000;
+		border-radius: 2em;
+		padding: 2px;
+		transition: all .4s ease;
+		&:after {
+			border-radius: 50%;
+			background: orange;
+			transition: all .2s ease;
+		}
+
+		&:before {
+			border-radius: 50%;
+			background: red;
+			transition: all .2s ease;
+		}
 	}
 }
 
