@@ -13,6 +13,7 @@ class Review(models.Model):
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, blank=True, related_name="review_likes")
 
     def __str__(self):
         return self.title

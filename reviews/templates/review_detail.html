@@ -5,7 +5,6 @@ Review Detail
 {% load static %}
 {% block content %}
 {% load crispy_forms_tags %}
-
 <div class="content-section">    
     <div class="review-metadata">
         <a href="{%url 'user-reviews' review.author.username %}" class="link-img">
@@ -23,8 +22,18 @@ Review Detail
         {% if object.author == user %}
         <a class="btn btn-danger" href="{% url 'review-delete' object.id %}">Delete Review</a>
         <a class="btn btn-warning" href="{% url 'review-update' object.id %}">Update Review</a>
-    {% endif %}
+        {% endif %}
+        <form>            
+            <div>
+                <p>
+                    Likes {{review.likes.count}}
+                </p>               
+                <button type="submit"  id="like" name="{{object.id}}" value="Like" class="btn btn-info pull-left">Like</button>            
+            </div>
+        </form>
+        
     </div>
+    
 </div>
 
 <div class="container comment-section">
@@ -85,5 +94,31 @@ Review Detail
         </div>
     </div>
 </div>
-
 {% endblock content %}
+
+{% block jquery %}
+
+$('#like').click(function(e){
+    
+    //console.log({{ csrf_token }})
+    e.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'review-detail' review.slug %}",
+        data: {'like': 'true', csrfmiddlewaretoken: '{{ csrf_token }}'},
+        dataType: "json",
+        success: function(response) {
+            console.log(response)
+        },
+        error: function(e) {
+            console.log('error')
+            console.log(e)
+        },
+        
+    });
+return false;
+
+});
+    
+
+{% endblock jquery %}

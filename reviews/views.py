@@ -93,22 +93,27 @@ class ReviewDetailView(DetailView):
         return context
     
     def post(self, request, *args, **kwargs):
-
         content_type = ContentType.objects.get_for_model(Review)
-        instance_id = kwargs['slug']        
+        instance = Review.objects.get(slug=kwargs['slug'])
+              
         
-        if not request.user.is_anonymous:
-            if len(request.POST.get("comment_textarea")) > 0 and request.POST.get("comment_textarea") is not None:            
-                comment = Comment(author=request.user, content_type=content_type, object_id=instance_id,content=request.POST.get("comment_textarea"))
-                comment.save()
-                return HttpResponseRedirect(self.request.path_info)
-            else:
-                print('error')
-                messages.error(request, "You must type a comment", extra_tags="danger")
-                return HttpResponseRedirect(self.request.path_info)
-        else:
-            messages.error(request, "You must be logged in to comment", extra_tags="danger")
+        
+        if request.POST.get('like'):
+            instance.likes.add(request.user)
             return HttpResponseRedirect(self.request.path_info)
+        else:
+            if not request.user.is_anonymous:
+                if len(request.POST.get("comment_textarea")) > 0 and request.POST.get("comment_textarea") is not None:            
+                    comment = Comment(author=request.user, content_type=content_type, object_id=instance.id,content=request.POST.get("comment_textarea"))
+                    comment.save()
+                    return HttpResponseRedirect(self.request.path_info)
+                else:
+                    # print('error')
+                    messages.error(request, "You must type a comment", extra_tags="danger")
+                    return HttpResponseRedirect(self.request.path_info)
+            else:
+                messages.error(request, "You must be logged in to comment", extra_tags="danger")
+                return HttpResponseRedirect(self.request.path_info)
 
 class ReviewCreateView(LoginRequiredMixin,CreateView):
     model = Review
