@@ -6,3 +6,4 @@ django_notes/__pycache__/settings.cpython-37.pyc
 
 /media
 reviews/static/reviews/css/main.css
+reviews/static/reviews/js/scroll.js

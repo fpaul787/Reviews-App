@@ -9,7 +9,11 @@ from django.urls import reverse_lazy
 from comments.models import Comment
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.template.defaultfilters import slugify
 
+from django.http import JsonResponse
+from django.core.serializers.json import DjangoJSONEncoder
+import json
 
 # Create your views here.
 posts = [
@@ -46,6 +50,17 @@ class ReviewListView(ListView):
     ordering = ['-date_posted']
     paginate_by = 4
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(ReviewListView, self).get_context_data(**kwargs)
+        reviews = Review.objects.all()
+        # print(reviews)
+        context['reviews'] = reviews
+
+        reviews = list(Review.objects.all().values())
+        context['reviews_dictionary'] = json.dumps(reviews, cls=DjangoJSONEncoder)
+        
+        return context
+
 class UserReviewsListView(ListView):
     model = Review
     template_name = 'user_reviews.html'
@@ -63,9 +78,11 @@ class ReviewDetailView(DetailView):
     success_url = ''
     
     def get_context_data(self, *args, **kwargs):
+        # print(args)
+        # print(self.kwargs)
         context = super(ReviewDetailView, self).get_context_data(**kwargs)
         
-        instance = get_object_or_404(Review, id=self.kwargs['pk'])
+        instance = get_object_or_404(Review, slug=self.kwargs['slug'])
         
         content_type = ContentType.objects.get_for_model(Review)
         obj_id = instance.id
@@ -78,7 +95,7 @@ class ReviewDetailView(DetailView):
     def post(self, request, *args, **kwargs):
 
         content_type = ContentType.objects.get_for_model(Review)
-        instance_id = kwargs['pk']        
+        instance_id = kwargs['slug']        
         
         if not request.user.is_anonymous:
             if len(request.POST.get("comment_textarea")) > 0 and request.POST.get("comment_textarea") is not None:            
@@ -111,13 +128,19 @@ class ReviewUpdateView(LoginRequiredMixin, UserPassesTestMixin ,UpdateView):
     success_url = reverse_lazy('reviews-home')
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        print(self.object.content)
+        print(self.object.slug)
+        self.object.slug = self.object.title
+        print(self.object.slug)
+        return response
 
     def test_func(self):
         review = self.get_object()
         if self.request.user == review.author:
             return True # allow update
         return False # can't update
+    
 
 class ReviewDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Review

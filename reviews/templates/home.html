@@ -3,6 +3,7 @@
 Home
 {% endblock title %}
 {% block content %}
+{% load static %}
 
 {% for review in reviews %}
 
@@ -18,7 +19,7 @@ Home
         <h2 class="review-title">{{ review.title }}</h2>
     </div>  
     <div>     
-            <a href="{%url 'review-detail' review.id %}" class="stretched-link">
+            <a href="{%url 'review-detail' review.slug %}" class="stretched-link">
                 <p>
                     {{ review.content|truncatewords:30 }}
                 </p>

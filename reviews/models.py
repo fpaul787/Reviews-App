@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db.models.signals import pre_save # before model is saved, do something
+from django.urls import reverse
 
 # test
 from django.utils.text import slugify
@@ -15,6 +16,13 @@ class Review(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('article_detail', kwargs={'slug': self.slug}) # new
+
+    def save(self, *args, **kwargs):
+        # self.slug = create_slug(self) if you wanted to change slug name
+        super().save(*args, **kwargs)
 
 def create_slug(instance, new_slug=None):
     slug = slugify(instance.title)
