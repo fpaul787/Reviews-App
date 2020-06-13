@@ -374,4 +374,8 @@ li {
   font-size: large;
   color: #710080;
 }
+
+.fa:hover {
+  text-decoration: none;
+}
 /*# sourceMappingURL=style.css.map */
