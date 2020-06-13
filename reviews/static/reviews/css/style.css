@@ -53,8 +53,13 @@ ul {
   color: #ffa500;
 }
 
+.stretched-link {
+  text-decoration: none !important;
+  color: #000000;
+}
+
 .card:hover .stretched-link {
-  text-decoration: none;
+  text-decoration: none !important;
   color: #000000;
 }
 
