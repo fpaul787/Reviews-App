@@ -23,7 +23,7 @@ Review Detail
         <a class="btn btn-danger" href="{% url 'review-delete' object.id %}">Delete Review</a>
         <a class="btn btn-warning" href="{% url 'review-update' object.id %}">Update Review</a>
         {% endif %}
-        <form method="POST">       
+        <form id="form-id" name="like" action="/review/{{object.slug}}/" method="POST">       
             {% csrf_token %}    
             {% if messages %}
             <div class="messages" id='messageElement'>
@@ -33,11 +33,9 @@ Review Detail
                 {% endif %}            
             {% endfor %}
         </div>
-        {% endif %} 
-            <div id="testingDiv">
-                Likes: <span id="likesAMT">{{object.likes.count}}</span>               
-            </div>
-            <button type="submit"  name="like"  value="Like" class="btn btn-info pull-left">Like</button>            
+        {% endif %}
+            <input type="hidden" name="like" value="true">
+            <a href="#" onclick="document.forms['form-id'].submit();" class="fa fa-thumbs-up fa-2x">{{review.likes.count}}</a>          
         </form>
 
         

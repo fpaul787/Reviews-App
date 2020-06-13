@@ -98,7 +98,6 @@ class ReviewDetailView(DetailView):
         instance = Review.objects.get(slug=kwargs['slug'])       
         
         if request.POST.get('like'):
-
             if not request.user.is_anonymous:
                 instance.likes.add(request.user)
                 return HttpResponseRedirect(self.request.path_info)
