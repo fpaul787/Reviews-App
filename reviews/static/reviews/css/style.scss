@@ -4,8 +4,6 @@ body {
 	margin-top: 5rem;
 }
 
-
-
 ul {
 	margin: 0;
 }
@@ -35,7 +33,6 @@ ul {
 }
 
 .content-section-side {
-	
 	padding: 10px 20px;
 	border: 1px solid #dddddd;
 	border-radius: 3px;
@@ -48,12 +45,16 @@ ul {
 
 .card:hover {
 	background-color: #727272;
-	color: #000000;
+	color: #000000;	
 }
 
-.card:hover .review-title{
+.card:hover .review-title  {
 	background-color: #727272;
-	color: #ffa500;
+	color: #ffffff;
+}
+
+.card:hover .likes{
+	color: #ffffff;
 }
 
 .stretched-link {
@@ -63,7 +64,7 @@ ul {
 
 .card:hover .stretched-link {
 	text-decoration: none !important;
-	color: #000000;
+	color: #ffffff;
 }
 
 .text-muted{
@@ -93,6 +94,7 @@ ul {
 	text-overflow: ellipsis;
 }
 .review-img {
+	text-decoration: none;
 	height: 65px;
 	width: 65px;
 	margin-right: 16px;
@@ -206,6 +208,7 @@ are in stack order */
 
 /* for username link on post  */
 .mybadge:link  {
+	text-decoration: none;
 	padding: 2px 9px 2px 9px;
 	font-size: 20.025px;
 	font-weight: bold;
@@ -356,6 +359,10 @@ li {
 	font-size: large;
 	color: rgb(113, 0, 128);
 }
+
+
+
+
 
 
 

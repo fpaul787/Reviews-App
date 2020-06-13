@@ -47,23 +47,27 @@ ul {
 }
 
 .card:hover {
-	background-color: #ffffff;
-	color: #000000;
+	background-color: #727272;
+	color: #000000;	
 }
 
-.card:hover .review-title{
-	background-color: #ffffff;
-	color: #ffc0cb;
+.card:hover .review-title  {
+	background-color: #727272;
+	color: #ffffff;	
 }
 
-.card:hover .mybadge{
-	background-color: #ffc0cb;
-	color: black;
+.card:hover .likes{
+	color: #ffffff;
 }
 
-.card:hover .stretched-link{
-	text-decoration: none;
-	color: #000000;
+.stretched-link {
+	text-decoration: none !important;
+	color: #ffffff;
+}
+
+.card:hover .stretched-link {
+	text-decoration: none !important;
+	color: #ffffff;
 }
 
 
@@ -73,7 +77,7 @@ ul {
 }
 
 .card:hover .text-muted{
-	color: #000000 !important;
+	color: #ffffff !important;
 }
 
 .card:hover .review-metadata{
@@ -81,7 +85,7 @@ ul {
 }
 
 .review-title {
-	color: #ffa500;
+	color: #ffffff;
 }
 
 .review-content {
