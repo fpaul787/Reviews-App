@@ -23,14 +23,23 @@ Review Detail
         <a class="btn btn-danger" href="{% url 'review-delete' object.id %}">Delete Review</a>
         <a class="btn btn-warning" href="{% url 'review-update' object.id %}">Update Review</a>
         {% endif %}
-        <form>            
-            <div>
-                <p>
-                    Likes {{review.likes.count}}
-                </p>               
-                <button type="submit"  id="like" name="{{object.id}}" value="Like" class="btn btn-info pull-left">Like</button>            
+        <form method="POST">       
+            {% csrf_token %}    
+            {% if messages %}
+            <div class="messages" id='messageElement'>
+            {% for message in messages %}
+                {% if 'like' in message.extra_tags%}
+                <p class="alert alert-danger">{{ message }}</p>
+                {% endif %}            
+            {% endfor %}
+        </div>
+        {% endif %} 
+            <div id="testingDiv">
+                Likes: <span id="likesAMT">{{object.likes.count}}</span>               
             </div>
+            <button type="submit"  name="like"  value="Like" class="btn btn-info pull-left">Like</button>            
         </form>
+
         
     </div>
     
@@ -45,8 +54,9 @@ Review Detail
         {% if messages %}
         <div class="messages" id='messageElement'>
             {% for message in messages %}
-            
-            <p class="alert alert-{{message.extra_tags}}">{{ message }}</p>
+                {% if 'comment' in message.extra_tags%}
+                    <p class="alert alert-danger">{{ message }}</p>
+                {% endif %} 
             {% endfor %}
         </div>
         {% endif %}
@@ -98,27 +108,28 @@ Review Detail
 
 {% block jquery %}
 
-$('#like').click(function(e){
+$('#nope').click(function(e){
     
-    //console.log({{ csrf_token }})
+    
     e.preventDefault();
     $.ajax({
         type: 'POST',
         url: "{% url 'review-detail' review.slug %}",
         data: {'like': 'true', csrfmiddlewaretoken: '{{ csrf_token }}'},
         dataType: "json",
-        success: function(response) {
-            console.log(response)
-        },
-        error: function(e) {
-            console.log('error')
-            console.log(e)
-        },
         
     });
-return false;
 
+    var amt = parseInt({{object.likes.count}});
+    amt = amt + 1
+    $('#testingDiv span').text(amt)
+    
+
+    
+    return false;
+    
 });
+
     
 
 {% endblock jquery %}

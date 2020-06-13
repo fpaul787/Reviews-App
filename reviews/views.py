@@ -90,29 +90,37 @@ class ReviewDetailView(DetailView):
         context['content_type'] = content_type
         context['object_id'] = obj_id
         context['comments'] = Comment.objects.filter(content_type=content_type, object_id=obj_id)
+        context['likes'] = instance.likes.all()
         return context
     
     def post(self, request, *args, **kwargs):
         content_type = ContentType.objects.get_for_model(Review)
-        instance = Review.objects.get(slug=kwargs['slug'])
-              
-        
+        instance = Review.objects.get(slug=kwargs['slug'])       
         
         if request.POST.get('like'):
-            instance.likes.add(request.user)
-            return HttpResponseRedirect(self.request.path_info)
+
+            if not request.user.is_anonymous:
+                instance.likes.add(request.user)
+                return HttpResponseRedirect(self.request.path_info)
+            else:
+                messages.error(request, "You must be logged in to like", extra_tags="like")
+                return HttpResponseRedirect(self.request.path_info)
         else:
             if not request.user.is_anonymous:
                 if len(request.POST.get("comment_textarea")) > 0 and request.POST.get("comment_textarea") is not None:            
-                    comment = Comment(author=request.user, content_type=content_type, object_id=instance.id,content=request.POST.get("comment_textarea"))
+                    comment = Comment(author=request.user, content_type=content_type, 
+                            object_id=instance.id,
+                                content=request.POST.get("comment_textarea"))
                     comment.save()
+                    
+
                     return HttpResponseRedirect(self.request.path_info)
                 else:
                     # print('error')
-                    messages.error(request, "You must type a comment", extra_tags="danger")
+                    messages.error(request, "You must type a comment", extra_tags="comment")
                     return HttpResponseRedirect(self.request.path_info)
             else:
-                messages.error(request, "You must be logged in to comment", extra_tags="danger")
+                messages.error(request, "You must be logged in to comment", extra_tags="comment")
                 return HttpResponseRedirect(self.request.path_info)
 
 class ReviewCreateView(LoginRequiredMixin,CreateView):
