@@ -90,7 +90,7 @@ ul {
 
 .review-content {
 	white-space: pre-line;
-	color: #000000;
+	color: #ffffff;
 }
 
 .review-content-preview {
@@ -107,8 +107,10 @@ ul {
 .review-metadata {
 	padding-bottom: 1px;
 	margin-bottom: 10px;
-	border-bottom: 3px solid #131212;
+	border-bottom: 3px solid #fafafa;
+	
 }
+
 
 .date {
 	float: right;
@@ -381,6 +383,15 @@ li {
 
 .card:hover .fa-thumbs-up{
 	color: #ffffff;
+}
+
+.fa{
+	color: #fafafa;
+}
+
+.fa:hover{
+	text-decoration: none;
+	color: #ffa500;
 }
 
 
