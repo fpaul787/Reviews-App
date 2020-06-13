@@ -99,8 +99,12 @@ class ReviewDetailView(DetailView):
         
         if request.POST.get('like'):
             if not request.user.is_anonymous:
-                instance.likes.add(request.user)
-                return HttpResponseRedirect(self.request.path_info)
+                if instance.likes.filter(username=request.user):
+                    instance.likes.remove(request.user)
+                    return HttpResponseRedirect(self.request.path_info)
+                else:
+                    instance.likes.add(request.user)
+                    return HttpResponseRedirect(self.request.path_info)
             else:
                 messages.error(request, "You must be logged in to like", extra_tags="like")
                 return HttpResponseRedirect(self.request.path_info)
