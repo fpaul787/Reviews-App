@@ -386,4 +386,8 @@ li {
   font-size: large;
   color: #710080;
 }
+
+.card:hover .fa-thumbs-up {
+  color: #ffffff;
+}
 /*# sourceMappingURL=dark-theme.css.map */
