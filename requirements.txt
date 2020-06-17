@@ -1,0 +1,6 @@
+Django==3.0.7
+django-admin-list-filter-dropdown==1.0.3
+django-crispy-forms==1.9.1
+mysqlclient==1.4.6
+Pillow==7.1.2
+validate-email==1.3
