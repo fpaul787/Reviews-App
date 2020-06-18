@@ -29,7 +29,7 @@ urlpatterns = [
     path('', include('reviews.urls'))
     
 ]
-handler404 = 'error.views.default'
+handler404 = 'error.views.handler404'
 # handler500 = Myhandler500
 
 if settings.DEBUG:
