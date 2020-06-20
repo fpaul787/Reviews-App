@@ -10,3 +10,4 @@ reviews/static/reviews/js/scroll.js
 
 .env
 /.vscode
+.env.prod

@@ -1,0 +1,52 @@
+version: "3"
+
+services:
+    web:
+        restart: always
+        env_file: 
+            - .env.prod
+        build:
+            context: ./django_reviews
+            dockerfile: docker/Dockerfile.prod
+        expose:
+            - 8000
+        command: >
+            sh -c "python manage.py migrate --noinput &&
+                   gunicorn django_reviews.wsgi:application --bind 0.0.0.0:8000
+                   "
+        volumes:
+            - static_volume:/home/app/web/static
+            - media_volume:/home/app/web/media
+        depends_on: 
+            - mysql
+
+    mysql:
+        env_file: 
+            - .env.prod
+        image: mysql:5.7
+        restart: always
+        volumes: 
+            - mysql_data:/var/run/mysqld
+        environment: 
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            # MYSQL_USER: 'root'
+            MYSQL_PORT: ${MYSQL_PORT}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        ports:
+            - '${MYSQL_PORT}:${MYSQL_PORT}'
+
+    nginx:
+        build: ./nginx
+        ports:
+            - 1337:80
+        volumes:
+            - static_volume:/home/app/web/static
+            - media_volume:/home/app/web/media
+        depends_on:
+            - web
+
+volumes: 
+    mysql_data:
+    static_volume:
+    media_volume:

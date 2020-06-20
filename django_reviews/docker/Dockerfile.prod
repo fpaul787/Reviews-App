@@ -1,0 +1,40 @@
+# image
+FROM python:3.7-alpine
+
+RUN mkdir -p /home/app
+
+# create the app user
+RUN addgroup -S app && adduser -S app -G app
+
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/static
+RUN mkdir $APP_HOME/media
+WORKDIR $APP_HOME
+
+RUN pip install --no-cache --upgrade pip
+
+RUN apk add --no-cache mariadb-connector-c-dev ;\
+    apk add --no-cache --virtual .build-deps \
+        build-base \
+        mariadb-dev ;\
+    pip install mysqlclient;\
+    apk add gcc python3-dev jpeg-dev zlib-dev ;\
+    pip install Pillow
+
+
+# copy project
+COPY . $APP_HOME
+
+# chown all the files to the app user
+RUN chown -R app:app $APP_HOME
+
+RUN pip install -r requirements.txt
+
+RUN apk del .build-deps
+
+USER app
+
+# RUN chmod +x /entrypoint.sh
+# ENTRYPOINT ["/entrypoint.sh"]
