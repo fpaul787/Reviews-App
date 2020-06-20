@@ -4,6 +4,7 @@ FROM python:3.7-alpine
 ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /requirements.txt
+# COPY ./django_reviews/entrypoint.sh /entrypoint.sh
 
 RUN apk add --no-cache mariadb-connector-c-dev ;\
     apk add --no-cache --virtual .build-deps \
@@ -24,3 +25,6 @@ COPY . /app
 
 RUN adduser -D user
 USER user
+
+# RUN chmod +x /entrypoint.sh
+# ENTRYPOINT ["/entrypoint.sh"]

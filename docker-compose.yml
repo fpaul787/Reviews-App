@@ -10,13 +10,13 @@ services:
             - "8000:8000"
         volumes: 
             - ./django_reviews:/app
-            - ${MYSQL_DATABASE}:/var/run/mysqld
+            - reviews:/var/run/mysqld
         command: >
             sh -c "python manage.py runserver 0.0.0.0:8000"
         depends_on: 
-            - db
+            - mysql
 
-    db:
+    mysql:
         env_file: .env
         image: mysql:5.7
         restart: always
