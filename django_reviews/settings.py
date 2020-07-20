@@ -22,11 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+DEBUG = os.environ.get('DEBUG')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.environ.get("DEBUG", default=0))
-
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST')]
 
 
 # Application definition
@@ -81,12 +79,11 @@ WSGI_APPLICATION = 'django_reviews.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('MYSQL_DATABASE'),
-        'USER': os.environ.get('DB_USER'),
+        'ENGINE': 'django.db.backends.postgresql',
         'HOST': os.environ.get('DB_HOST'),
-        "PASSWORD": os.environ.get('MYSQL_PASSWORD'),
-        'PORT': os.environ.get('MYSQL_PORT')
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        "PASSWORD": os.environ.get('DB_PASS')
     }
 }
 
@@ -130,7 +127,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # STATICFILES_DIR = [
 #     os.path.join(BASE_DIR, "static")
-    
+
 # ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
