@@ -4,7 +4,6 @@ from django.utils import timezone
 from django.db.models.signals import pre_save # before model is saved, do something
 from django.urls import reverse
 
-# test
 from django.utils.text import slugify
 class Review(models.Model):
     title = models.CharField(max_length=100)
@@ -14,6 +13,7 @@ class Review(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, blank=True, related_name="review_likes")
+    total_likes = models.PositiveIntegerField(db_index=True, default=0)
 
     def __str__(self):
         return self.title
