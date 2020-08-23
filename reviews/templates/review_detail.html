@@ -14,12 +14,12 @@ Review Detail
         <small class="date text-muted">{{ review.date_posted }}</small>
     </div>  
     <h2>
-        <p class="review-title">{{ object.title }}</p>
+        <p class="review-title">{{ review.title }}</p>
     </h2>
-    <p class="review-content">{{ object.content }}</p>                                  
+    <p class="review-content">{{ review.content }}</p>                                  
     
     <div class="media-body">
-        {% if object.author == user %}
+        {% if review.author == user %}
         <a class="btn btn-danger" href="{% url 'review-delete' object.id %}">Delete Review</a>
         <a class="btn btn-warning" href="{% url 'review-update' object.id %}">Update Review</a>
         {% endif %}
@@ -35,8 +35,15 @@ Review Detail
         </div>
         {% endif %}
             <input type="hidden" name="like" value="true">
-            <a href="#" onclick="document.forms['form-id'].submit();" class="fa fa-thumbs-up fa-2x">{{review.likes.count}}</a>          
+            
+            <a href="#" data-id="{{ review.id }}" data-action="{% if request.user in likes %}un{% endif %}like"
+                    class="fa fa-thumbs-up fa-2x like">
+                <span class="count">
+                    <span class="total">{{object.users_like.count}}</span>
+                </span>
+            </a>
         </form>
+        
 
         
     </div>
@@ -106,28 +113,32 @@ Review Detail
 
 {% block jquery %}
 
-$('#nope').click(function(e){
-    
-    
+$('a.like').click(function(e){
     e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url: "{% url 'review-detail' review.slug %}",
-        data: {'like': 'true', csrfmiddlewaretoken: '{{ csrf_token }}'},
-        dataType: "json",
-        
-    });
+    $.post('{% url 'review-like' %}',
+        {
+          id: $(this).data('id'),
+          action: $(this).data('action'),
+          csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        function(data){
+        if (data['status'] == 'ok')
+        {
+          var previous_action = $('a.like').data('action');
 
-    var amt = parseInt({{object.likes.count}});
-    amt = amt + 1
-    $('#testingDiv span').text(amt)
-    
+          // toggle data-action
+          $('a.like').data('action', previous_action == 'like' ?
+          'unlike' : 'like');
 
-    
-    return false;
-    
-});
+          // update total likes
+          var previous_likes = parseInt($('span.total').text());
+          
+          $('span.count .total').text(previous_action == 'like' ?
+          previous_likes + 1 : previous_likes - 1);
+        }
+      }
+    )
+})
 
-    
 
 {% endblock jquery %}

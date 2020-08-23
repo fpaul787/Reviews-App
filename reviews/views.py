@@ -12,6 +12,9 @@ from django.contrib import messages
 from django.template.defaultfilters import slugify
 
 from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
+
 from django.core.serializers.json import DjangoJSONEncoder
 import json
 
@@ -90,7 +93,7 @@ class ReviewDetailView(DetailView):
         context['content_type'] = content_type
         context['object_id'] = obj_id
         context['comments'] = Comment.objects.filter(content_type=content_type, object_id=obj_id)
-        context['likes'] = instance.likes.all()
+        context['likes'] = instance.users_like.all()
         return context
     
     def post(self, request, *args, **kwargs):
@@ -99,11 +102,11 @@ class ReviewDetailView(DetailView):
         
         if request.POST.get('like'):
             if not request.user.is_anonymous:
-                if instance.likes.filter(username=request.user):
-                    instance.likes.remove(request.user)
+                if instance.users_like.filter(username=request.user):
+                    instance.users_like.remove(request.user)
                     return HttpResponseRedirect(self.request.path_info)
                 else:
-                    instance.likes.add(request.user)
+                    instance.users_like.add(request.user)
                     return HttpResponseRedirect(self.request.path_info)
             else:
                 messages.error(request, "You must be logged in to like", extra_tags="like")
@@ -157,7 +160,6 @@ class ReviewUpdateView(LoginRequiredMixin, UserPassesTestMixin ,UpdateView):
             return True # allow update
         return False # can't update
     
-
 class ReviewDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Review
     template_name = 'review_confirm_delete.html'
@@ -168,3 +170,23 @@ class ReviewDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == review.author:
             return True # allow deletion
         return False # can't delete
+
+
+@login_required
+@require_POST
+def review_like(request):
+    review_id = request.POST.get('id')
+    action = request.POST.get('action')
+    print(action)
+    if review_id and action:
+        try:
+            review = Review.objects.get(id=review_id)
+            if action == 'like':
+                review.users_like.add(request.user)
+                print(review.users_like.all())
+            else:
+                review.users_like.remove(request.user)
+            return JsonResponse({'status': 'ok'})
+        except:
+            pass
+    return JsonResponse({'status': 'error'})

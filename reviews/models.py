@@ -12,7 +12,7 @@ class Review(models.Model):
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(User, blank=True, related_name="review_likes")
+    users_like = models.ManyToManyField(User, blank=True, related_name="review_likes")
     total_likes = models.PositiveIntegerField(db_index=True, default=0)
 
     def __str__(self):
