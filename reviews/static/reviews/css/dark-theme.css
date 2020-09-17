@@ -4,6 +4,10 @@ body {
   margin-top: 5rem;
 }
 
+.overflow{
+	overflow-y: scroll;
+}
+
 ul {
   margin: 0;
 }

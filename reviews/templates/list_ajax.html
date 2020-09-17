@@ -1,0 +1,26 @@
+
+
+{% for review in reviews %}
+
+{# double {} used for  variable #}
+{# single {} used for most complex logic#}
+<div class="card content-section">    
+    <div class="review-metadata">
+        <a href="{%url 'user-reviews' review.author.username %}" class="link-img">
+            <img src="{{review.author.profile.image.url}}" alt="" class="rounded-circle review-img">
+        </a>
+        <a class="mybadge link-img" href="{%url 'user-reviews' review.author.username %}">{{ review.author }}</a>
+        <small class="date text-muted">{{ review.date_posted }}</small>
+        <h2 class="review-title">{{ review.title }}</h2>
+    </div>  
+    <div>     
+            <a href="{%url 'review-detail' review.slug %}" class="stretched-link">
+                <p>
+                    {{ review.content|truncatewords:30 }}
+                </p>
+            </a>                                  
+    </div>
+    <i class="fa fa-thumbs-up fa-2x">{{review.users_like.count}}</i>
+    
+</div>
+{% endfor %}

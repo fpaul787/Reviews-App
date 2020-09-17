@@ -16,6 +16,9 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
 from django.core.serializers.json import DjangoJSONEncoder
+
+from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import json
 
 # Create your views here.
@@ -46,12 +49,34 @@ def home(request):
     }
     return render(request, 'home.html' ,context)
 
+def reviews_list(request):
+    reviews = Review.objects.all()
+    paginator = Paginator(reviews, 4)
+    page = request.GET.get('page')
+    reviews__list = list(Review.objects.all().values())
+    reviews_dictionary = json.dumps(reviews__list, cls=DjangoJSONEncoder)
+    try:
+        reviews = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an interger deliver the first page
+        reviews = paginator.page(1)
+    except EmptyPage:
+        if request.is_ajax():
+            return HttpResponse('')
+        reviews = paginator.page(paginator.num_pages)
+    if request.is_ajax():
+        return render(request, 'list_ajax.html', {'section': 'reviews', 'reviews': reviews})
+    return render(request,
+                        'home.html',
+                        {'section': 'reviews', 'reviews': reviews, 
+                        'reviews_dictionary': reviews_dictionary})
+
 class ReviewListView(ListView):
     model = Review
     template_name = 'home.html'
     context_object_name = 'reviews'
     ordering = ['-date_posted']
-    paginate_by = 4
+    # paginate_by = 4
 
     def get_context_data(self, *args, **kwargs):
         context = super(ReviewListView, self).get_context_data(**kwargs)

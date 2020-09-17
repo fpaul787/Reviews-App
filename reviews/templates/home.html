@@ -5,50 +5,35 @@ Home
 {% block content %}
 {% load static %}
 
-{% for review in reviews %}
-
-{# double {} used for  variable #}
-{# single {} used for most complex logic#}
-<div class="card content-section">    
-    <div class="review-metadata">
-        <a href="{%url 'user-reviews' review.author.username %}" class="link-img">
-            <img src="{{review.author.profile.image.url}}" alt="" class="rounded-circle review-img">
-        </a>
-        <a class="mybadge link-img" href="{%url 'user-reviews' review.author.username %}">{{ review.author }}</a>
-        <small class="date text-muted">{{ review.date_posted }}</small>
-        <h2 class="review-title">{{ review.title }}</h2>
-    </div>  
-    <div>     
-            <a href="{%url 'review-detail' review.slug %}" class="stretched-link">
-                <p>
-                    {{ review.content|truncatewords:30 }}
-                </p>
-            </a>                                  
-    </div>
-    <i class="fa fa-thumbs-up fa-2x">{{review.users_like.count}}</i>
-    
+<h1>Reviews</h1>
+<div id="review-list">
+    {% include "list_ajax.html" %}
 </div>
-{% endfor %}
 {# pagination logic #}
-{% if is_paginated %}
-    {%  if page_obj.has_previous %}
-    <a class="btn btn-outline-info mb-4"href="?page=1">First</a>
-    <a class="btn btn-outline-info mb-4"href="?page={{page_obj.previous_page_number }}">Previous</a>
-    {% endif %}
 
-    {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-        <a class="btn btn-info mb-4" href="?page={{num}}">{{num}}</a>
-        {% elif num > page_obj.number|add:'-3'  and  num < page_obj.number|add:'3' %}
-        <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
-
-        {% endif %}
-    {% endfor %}
-
-    {%  if page_obj.has_next %}
-    <a class="btn btn-outline-info mb-4"href="?page={{page_obj.next_page_number}}">Next</a>
-    <a class="btn btn-outline-info mb-4"href="?page={{page_obj.paginator.num_pages }}">Last</a>
-    {% endif %}
-
-{% endif %}
 {% endblock content %}
+
+{% block domready %}
+    var page = 1;
+    var empty_page = false;
+    var block_request = false;
+
+    $(window).scroll(function(){
+        var margin = $(document).height() - $(window).height() - 100;
+        if($(window).scrollTop() > margin && empty_page == false &&
+            block_request == false){
+                block_request = true;
+                page += 1;
+                $.get('?page=' + page, function(data){
+                    if(data == ''){
+                        empty_page = true;
+                    }
+                    else {
+                        block_request = false;
+                        console.log(data);
+                        $('#review-list').append(data);
+                    }
+                });
+            }
+    });
+{% endblock domready %}
