@@ -4,8 +4,8 @@ body {
   margin-top: 5rem;
 }
 
-.overflow{
-	overflow-y: scroll;
+.overflow {
+  overflow-y: scroll;
 }
 
 ul {
@@ -26,6 +26,7 @@ ul {
 
 .site-header .navbar-nav .nav-link.active {
   font-weight: 500;
+  margin-bottom: 2rem;
 }
 
 .content-section {

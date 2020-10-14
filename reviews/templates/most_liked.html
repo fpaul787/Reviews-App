@@ -1,0 +1,11 @@
+
+
+
+{% for review in reviews_by_popularity %}
+<a href="{%url 'review-detail' review.slug %}">
+<li class="list-group-item list-group-item-light">
+{{review.title}}
+</li>
+</a>
+
+{% endfor %}

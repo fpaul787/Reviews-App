@@ -5,7 +5,7 @@ body {
 }
 
 
-.overflow{
+.overflow {
 	overflow-y: scroll;
 }
 
@@ -27,6 +27,7 @@ ul {
 
 .site-header .navbar-nav .nav-link.active {
 	font-weight: 500;
+	margin-bottom: 2rem;
 }
 
 .content-section {
@@ -38,28 +39,28 @@ ul {
 }
 
 .content-section-side {
-	
+
 	padding: 10px 20px;
 	border: 1px solid #dddddd;
 	border-radius: 3px;
 	margin-bottom: 20px;
 }
 
-.card{
+.card {
 	background-color: #333333;
 }
 
 .card:hover {
 	background-color: #727272;
-	color: #000000;	
+	color: #000000;
 }
 
-.card:hover .review-title  {
+.card:hover .review-title {
 	background-color: #727272;
-	color: #ffffff;	
+	color: #ffffff;
 }
 
-.card:hover .likes{
+.card:hover .likes {
 	color: #ffffff;
 }
 
@@ -74,16 +75,16 @@ ul {
 }
 
 
-.text-muted{
-	font-size: large ;
+.text-muted {
+	font-size: large;
 	color: #ffffff !important;
 }
 
-.card:hover .text-muted{
+.card:hover .text-muted {
 	color: #ffffff !important;
 }
 
-.card:hover .review-metadata{
+.card:hover .review-metadata {
 	border-bottom: 3px solid #ffffff;
 }
 
@@ -101,6 +102,7 @@ ul {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
 .review-img {
 	height: 65px;
 	width: 65px;
@@ -111,7 +113,7 @@ ul {
 	padding-bottom: 1px;
 	margin-bottom: 10px;
 	border-bottom: 3px solid #fafafa;
-	
+
 }
 
 
@@ -203,7 +205,7 @@ ul {
 }
 
 // for username on comments
-.badge{
+.badge {
 	font-size: medium;
 }
 
@@ -222,7 +224,7 @@ are in stack order */
 
 
 /* for username link on post  */
-.mybadge:link  {
+.mybadge:link {
 	padding: 2px 9px 2px 9px;
 	font-size: 20.025px;
 	font-weight: bold;
@@ -231,10 +233,10 @@ are in stack order */
 	background-color: #ffa500;
 	-webkit-border-radius: 9px;
 	-moz-border-radius: 9px;
-	border-radius: 9px;	
+	border-radius: 9px;
 }
 
-.my-reviews-link  {
+.my-reviews-link {
 	padding: 10px 9px 2px 9px;
 	font-size: 15.025px;
 	font-weight: bold;
@@ -243,8 +245,8 @@ are in stack order */
 	background-color: #ffa500;
 	-webkit-border-radius: 9px;
 	-moz-border-radius: 9px;
-	border-radius: 9px;	
-	
+	border-radius: 9px;
+
 }
 
 
@@ -263,66 +265,68 @@ li {
 }
 
 .tg-list-item {
-    margin-top: 3px;
-    margin-left: 10px;
-    display: flex;
+	margin-top: 3px;
+	margin-left: 10px;
+	display: flex;
 }
 
 #tg-text {
-    margin-top: 5px;    
-    margin-right: 1rem;
+	margin-top: 5px;
+	margin-right: 1rem;
 	color: #ffffff;
 }
 
-#cb1{
-    margin-left: 5px;
-    
+#cb1 {
+	margin-left: 5px;
+
 }
 
 .tgl {
 	display: none;
-  
+
 	// add default box-sizing for this scope
 	&,
-  &:after,
-  &:before,
+	&:after,
+	&:before,
 	& *,
-  & *:after,
-  & *:before,
-	& + .tgl-btn {
+	& *:after,
+	& *:before,
+	&+.tgl-btn {
 		box-sizing: border-box;
+
 		&::selection {
 			background: none;
 		}
 	}
-  
-	+ .tgl-btn {
+
+	+.tgl-btn {
 		outline: 0;
 		display: block;
 		width: 4em;
 		height: 2em;
 		position: relative;
 		cursor: pointer;
-    user-select: none;
+		user-select: none;
+
 		&:after,
-    &:before {
+		&:before {
 			position: relative;
 			display: block;
 			content: "";
 			width: 50%;
 			height: 100%;
 		}
-    
+
 		&:after {
 			left: 0;
 		}
-    
+
 		&:before {
 			display: none;
 		}
 	}
-  
-	&:checked + .tgl-btn:after {
+
+	&:checked+.tgl-btn:after {
 		left: 50%;
 	}
 }
@@ -330,11 +334,13 @@ li {
 // themes
 // themes
 .tgl-light {
-	+ .tgl-btn {
-		background: #ffffff;;
+	+.tgl-btn {
+		background: #ffffff;
+		;
 		border-radius: 2em;
 		padding: 2px;
 		transition: all .4s ease;
+
 		&:after {
 			border-radius: 50%;
 			background: #ffc0cb;
@@ -347,12 +353,13 @@ li {
 			transition: all .2s ease;
 		}
 	}
-  
-	&:checked + .tgl-btn {
+
+	&:checked+.tgl-btn {
 		background: #000000;
 		border-radius: 2em;
 		padding: 2px;
 		transition: all .4s ease;
+
 		&:after {
 			border-radius: 50%;
 			background: orange;
@@ -370,32 +377,29 @@ li {
 .profile-form,
 .post-form,
 .register-form,
-.login-form{
+.login-form {
 	background-color: #333333;
 	color: #ffffff;
 
-	& .text-muted{
+	& .text-muted {
 		color: lighten($color: orange, $amount: 30) !important; // to change bootstrap
 	}
 }
 
-.profile-section a{
+.profile-section a {
 	font-size: large;
 	color: rgb(113, 0, 128);
 }
 
-.card:hover .fa-thumbs-up{
+.card:hover .fa-thumbs-up {
 	color: #ffffff;
 }
 
-.fa{
+.fa {
 	color: #fafafa;
 }
 
-.fa:hover{
+.fa:hover {
 	text-decoration: none;
 	color: #ffa500;
 }
-
-
-

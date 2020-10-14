@@ -55,6 +55,8 @@ def reviews_list(request):
     page = request.GET.get('page')
     reviews__list = list(Review.objects.all().values())
     reviews_dictionary = json.dumps(reviews__list, cls=DjangoJSONEncoder)
+
+    reviews_by_popularity = Review.objects.order_by('-total_likes')[:2]
     try:
         reviews = paginator.page(page)
     except PageNotAnInteger:
@@ -69,7 +71,8 @@ def reviews_list(request):
     return render(request,
                         'home.html',
                         {'section': 'reviews', 'reviews': reviews, 
-                        'reviews_dictionary': reviews_dictionary})
+                        'reviews_dictionary': reviews_dictionary,
+                        'reviews_by_popularity': reviews_by_popularity})
 
 class ReviewListView(ListView):
     model = Review
