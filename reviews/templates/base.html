@@ -75,15 +75,8 @@
                 <p>Placeholder text in base template. Replace with page content</p>
                 {% endblock %}
             </div>
-            <div class="col-md-4">
-                <div class="content-section-side">
-                    <h3>Most Liked Reviews</h3>
-                    <ul class="list-group">
-                        {% include "most_liked.html" %}
-                    </ul>
-                    </p>
-                </div>
-            </div>
+            {% block most_liked_reviews %}
+            {% endblock most_liked_reviews %}
         </div>
     </main>
     <!-- Optional JavaScript -->

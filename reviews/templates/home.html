@@ -13,6 +13,18 @@ Home
 
 {% endblock content %}
 
+{% block most_liked_reviews %}
+<div class="col-md-4">
+    <div class="content-section-side">
+        <h3>Most Liked Reviews</h3>
+        <ul class="list-group">
+            {% include "most_liked.html" %}
+        </ul>
+        </p>
+    </div>
+</div>
+{% endblock most_liked_reviews %}
+
 {% block domready %}
     var page = 1;
     var empty_page = false;
